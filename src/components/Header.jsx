@@ -26,7 +26,7 @@ class Header extends Component {
             toggleLoginPopup={this.toggleLoginPopup}
           />
         )}
-        {loggedInUser && <CurrentUserDisplay />}
+        {loggedInUser && <CurrentUserDisplay loggedInUser={loggedInUser} />}
       </div>
     );
   }
