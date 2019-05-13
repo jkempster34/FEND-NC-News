@@ -7,7 +7,7 @@ class ArticlesList extends Component {
     loading: true
   };
   componentDidMount() {
-    getArticles().then(articles => {
+    getArticles({ sort_by: "comment_count" }).then(articles => {
       this.setState({ articles, loading: false });
     });
   }
@@ -18,7 +18,12 @@ class ArticlesList extends Component {
     ) : (
       <ul>
         {articles.map(article => {
-          return <li key={article.article_id}>{article.title}</li>;
+          return (
+            <li key={article.article_id}>
+              {article.title}
+              COMMENTs: {article.comment_count}
+            </li>
+          );
         })}
       </ul>
     );
