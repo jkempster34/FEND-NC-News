@@ -12,3 +12,9 @@ export const getUser = username => {
     return user;
   });
 };
+
+export const getTopics = () => {
+  return Axios.get(`${url}/topics/`).then(({ data: { topics } }) => {
+    return topics;
+  });
+};
