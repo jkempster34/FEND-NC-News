@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import ncNewsLogo from "../images/nc-news-logo.png";
-import LoginPopup from "./Header.LoginPopup";
+import LoginPopup from "./Header.LoginPopup.jsx";
+import CurrentUserDisplay from "./Header.CurrentUserDisplay.jsx";
 
 class Header extends Component {
   state = { showLoginPopup: false };
   render() {
+    const { loggedInUser, loginUser } = this.props;
+    const { showLoginPopup } = this.state;
     return (
       <div className="Header">
         <Link to="/">
@@ -13,17 +16,17 @@ class Header extends Component {
         </Link>
         <Link to="/">Home</Link>
         <Link to="/articles">All</Link>
+        <Link to="/topics">Topics</Link>
         <button
-          onClick={
-            this.props.loggedInUser ? this.handleLogOut : this.toggleLoginPopup
-          }
-        >{`${this.props.loggedInUser ? "SIGN OUT" : "SIGN IN"}`}</button>
-        {this.state.showLoginPopup && (
+          onClick={loggedInUser ? this.handleLogOut : this.toggleLoginPopup}
+        >{`${loggedInUser ? "SIGN OUT" : "SIGN IN"}`}</button>
+        {showLoginPopup && (
           <LoginPopup
-            loginUser={this.props.loginUser}
+            loginUser={loginUser}
             toggleLoginPopup={this.toggleLoginPopup}
           />
         )}
+        {loggedInUser && <CurrentUserDisplay />}
       </div>
     );
   }
