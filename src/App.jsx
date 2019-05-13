@@ -13,7 +13,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header loginUser={this.loginUser} />
+        <Header
+          loginUser={this.loginUser}
+          loggedInUser={this.state.loggedInUser}
+          logOutUser={this.logOutUser}
+        />
         <Router>
           <Home path="/" />
           <Articles path="/articles" />
@@ -22,8 +26,13 @@ class App extends Component {
       </div>
     );
   }
+
   loginUser = username => {
     this.setState({ loggedInUser: username });
+  };
+
+  logOutUser = () => {
+    this.setState({ loggedInUser: "" });
   };
 }
 

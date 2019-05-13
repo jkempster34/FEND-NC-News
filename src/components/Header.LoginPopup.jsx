@@ -1,19 +1,28 @@
 import React, { Component } from "react";
-import { EventEmitter } from "events";
 import { getUser } from "../api.js";
 
 class LoginPopup extends Component {
   state = {
-    userNameInput: "",
-    showLoginPopup: false
+    userNameInput: ""
   };
   render() {
     return (
       <div className="login-popup">
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleInput} type="text" />
-          <button>SIGN IN</button>
-        </form>
+        <div className="login-popup-inner">
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Username:{" "}
+              <input
+                onChange={this.handleInput}
+                type="text"
+                placeholder="example: jessjelly"
+              />
+            </label>
+
+            <button>SIGN IN</button>
+            <button onClick={this.props.toggleLoginPopup}>close</button>
+          </form>
+        </div>
       </div>
     );
   }
@@ -26,14 +35,9 @@ class LoginPopup extends Component {
     event.preventDefault();
     getUser(this.state.userNameInput).then(validUser => {
       this.props.loginUser(validUser);
+      this.props.toggleLoginPopup();
     });
   };
-
-  toggleLoginPopup() {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
-  }
 }
 
 export default LoginPopup;
