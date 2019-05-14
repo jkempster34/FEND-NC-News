@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-import Home from "./pages/Home";
-import Articles from "./pages/Articles.jsx";
+import All from "./pages/All.jsx";
 import SingleArticle from "./pages/SingleArticle.jsx";
 import NewArticle from "./pages/NewArticle.jsx";
 import Header from "./components/Header.jsx";
@@ -21,8 +20,7 @@ class App extends Component {
           logOutUser={this.logOutUser}
         />
         <Router>
-          <Home path="/" />
-          <Articles path="/articles" />
+          <All path="/" />
           <SingleArticle path="/articles/:article_id" />
           <NewArticle path="/new-article" />
           <NotFound default />

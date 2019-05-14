@@ -1,22 +1,10 @@
 import React, { Component } from "react";
-import { getArticles } from "../api.js";
+
 import { Link } from "@reach/router";
 
 class ArticlesList extends Component {
-  state = {
-    articles: null,
-    loading: true
-  };
-  componentDidMount() {
-    this.getArticlesBySort(this.props.sortBy);
-  }
-  componentDidUpdate = prevProps => {
-    if (this.props.sortBy !== prevProps.sortBy) {
-      this.getArticlesBySort(this.props.sortBy);
-    }
-  };
   render() {
-    const { articles, loading } = this.state;
+    const { articles, loading } = this.props;
     return loading ? (
       <p>loading...</p>
     ) : (
@@ -37,11 +25,6 @@ class ArticlesList extends Component {
       </ul>
     );
   }
-  getArticlesBySort = sortBy => {
-    getArticles({ sort_by: sortBy }).then(articles => {
-      this.setState({ articles, loading: false });
-    });
-  };
 }
 
 export default ArticlesList;
