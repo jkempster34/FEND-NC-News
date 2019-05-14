@@ -22,7 +22,10 @@ class App extends Component {
         <Router>
           <All path="/" />
           <SingleArticle path="/articles/:article_id" />
-          <NewArticle path="/new-article" />
+          <NewArticle
+            path="/new-article"
+            loggedInUser={this.state.loggedInUser}
+          />
           <NotFound default />
         </Router>
       </div>
