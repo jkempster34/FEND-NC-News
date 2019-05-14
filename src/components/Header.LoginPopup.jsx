@@ -3,7 +3,8 @@ import { getUser } from "../api.js";
 
 class LoginPopup extends Component {
   state = {
-    userNameInput: ""
+    userNameInput: "",
+    wrongLogin: false
   };
   render() {
     return (
@@ -18,10 +19,10 @@ class LoginPopup extends Component {
                 placeholder="example: jessjelly"
               />
             </label>
-
             <button>SIGN IN</button>
-            <button onClick={this.props.toggleLoginPopup}>close</button>
           </form>
+          <button onClick={this.props.toggleLoginPopup}>close</button>
+          {this.state.wrongLogin && <p>No user exists!</p>}
         </div>
       </div>
     );
@@ -33,10 +34,13 @@ class LoginPopup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    getUser(this.state.userNameInput).then(validUser => {
-      this.props.loginUser(validUser);
-      this.props.toggleLoginPopup();
-    });
+    getUser(this.state.userNameInput)
+      .then(validUser => {
+        this.props.loginUser(validUser);
+        this.props.toggleLoginPopup();
+        this.setState({ wrongLogin: false });
+      })
+      .catch(() => this.setState({ wrongLogin: true }));
   };
 }
 
