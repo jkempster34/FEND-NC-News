@@ -14,9 +14,11 @@ class Header extends Component {
         <Link to="/">
           <img src={ncNewsLogo} alt="NC News logo" id="header-logo" />
         </Link>
-        <Link to="/">Home</Link>
-        <Link to="/articles">All</Link>
+        <Link to="/">All</Link>
         <Link to="/topics">Topics</Link>
+        <Link to="/new-article">
+          <button>ADD NEW ARTICLE</button>
+        </Link>
         <button
           onClick={loggedInUser ? this.handleLogOut : this.toggleLoginPopup}
         >{`${loggedInUser ? "SIGN OUT" : "SIGN IN"}`}</button>

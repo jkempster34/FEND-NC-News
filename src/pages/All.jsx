@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ArticlesList from "../components/ArticlesList";
 import { getArticles } from "../api.js";
-import { Link } from "@reach/router";
+// import { Link } from "@reach/router";
 
 class All extends Component {
   state = {
@@ -23,9 +23,6 @@ class All extends Component {
     return (
       <div className="Articles">
         <p>Articles...</p>
-        <Link to="/new-article">
-          <button>ADD NEW ARTICLE</button>
-        </Link>
         <select value={sortBy} onChange={this.handleChange}>
           <option value="created_at">Recent</option>
           <option value="comment_count">Comments</option>

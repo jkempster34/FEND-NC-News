@@ -36,3 +36,10 @@ export const getCommentsByArticleId = article_id => {
     }
   );
 };
+
+export const submitArticle = body => {
+  console.log(body);
+  return Axios.post(`${url}/articles/`, body).then(({ data: { article } }) => {
+    return article;
+  });
+};
