@@ -20,3 +20,19 @@ export const getTopics = () => {
     return topics;
   });
 };
+
+export const getArticleById = article_id => {
+  return Axios.get(`${url}/articles/${article_id}`).then(
+    ({ data: { article } }) => {
+      return article;
+    }
+  );
+};
+
+export const getCommentsByArticleId = article_id => {
+  return Axios.get(`${url}/articles/${article_id}/comments`).then(
+    ({ data: { comments } }) => {
+      return comments;
+    }
+  );
+};
