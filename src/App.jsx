@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Articles from "./pages/Articles.jsx";
 import SingleArticle from "./pages/SingleArticle.jsx";
+import NewArticle from "./pages/NewArticle.jsx";
 import Header from "./components/Header.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
@@ -23,7 +24,7 @@ class App extends Component {
           <Home path="/" />
           <Articles path="/articles" />
           <SingleArticle path="/articles/:article_id" />
-          {/* <NewArticle path="/new-article" /> */}
+          <NewArticle path="/new-article" />
           <NotFound default />
         </Router>
       </div>
