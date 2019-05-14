@@ -10,7 +10,7 @@ class Home extends Component {
         <h2>Popular Topics (no such thing, think of something else)</h2>
         <TopicsList />
         <h2>Popular Articles</h2>
-        <ArticlesList />
+        <ArticlesList sortBy="comment_count" />
       </div>
     );
   }

@@ -21,6 +21,7 @@ class App extends Component {
         <Router>
           <Home path="/" />
           <Articles path="/articles" />
+
           <NotFound default />
         </Router>
       </div>

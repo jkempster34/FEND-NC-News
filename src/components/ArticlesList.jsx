@@ -7,10 +7,13 @@ class ArticlesList extends Component {
     loading: true
   };
   componentDidMount() {
-    getArticles({ sort_by: "comment_count" }).then(articles => {
-      this.setState({ articles, loading: false });
-    });
+    this.getArticlesBySort(this.props.sortBy);
   }
+  componentDidUpdate = prevProps => {
+    if (this.props.sortBy !== prevProps.sortBy) {
+      this.getArticlesBySort(this.props.sortBy);
+    }
+  };
   render() {
     const { articles, loading } = this.state;
     return loading ? (
@@ -20,14 +23,22 @@ class ArticlesList extends Component {
         {articles.map(article => {
           return (
             <li key={article.article_id}>
-              {article.title}
-              COMMENTs: {article.comment_count}
+              {article.title + "MAKE A LINK!!!!!!"}
+              COMMENTS: {article.comment_count}
+              AUTHOR : {article.author}
+              CREATED_AT: {article.created_at}
+              VOTES: {article.votes}
             </li>
           );
         })}
       </ul>
     );
   }
+  getArticlesBySort = sortBy => {
+    getArticles({ sort_by: sortBy }).then(articles => {
+      this.setState({ articles, loading: false });
+    });
+  };
 }
 
 export default ArticlesList;
