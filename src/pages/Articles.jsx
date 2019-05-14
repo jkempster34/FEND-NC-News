@@ -9,6 +9,7 @@ class Articles extends Component {
     return (
       <div className="Articles">
         <p>Articles...</p>
+        <button>ADD NEW ARTICLE</button>
         <select value={this.state.sort_by} onChange={this.handleChange}>
           <option value="created_at">Recent</option>
           <option value="comment_count">Comments</option>

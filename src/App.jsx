@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import "./App.css";
 import Home from "./pages/Home";
 import Articles from "./pages/Articles.jsx";
+import SingleArticle from "./pages/SingleArticle.jsx";
 import Header from "./components/Header.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
@@ -21,7 +22,8 @@ class App extends Component {
         <Router>
           <Home path="/" />
           <Articles path="/articles" />
-
+          <SingleArticle path="/articles/:article_id" />
+          {/* <NewArticle path="/new-article" /> */}
           <NotFound default />
         </Router>
       </div>
