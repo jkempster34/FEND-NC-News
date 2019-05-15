@@ -7,14 +7,19 @@ import CurrentUserDisplay from "./Header.CurrentUserDisplay.jsx";
 class Header extends Component {
   state = { showLoginPopup: false };
   render() {
-    const { loggedInUser, loginUser } = this.props;
+    const { loggedInUser, loginUser, topics } = this.props;
     const { showLoginPopup } = this.state;
+    /// DO THIS
+    console.log(topics, "<<");
     return (
       <div className="Header">
         <Link to="/" state={{ refresh: true }}>
           All
         </Link>
-        <Link to="/topics">Topics</Link>
+        {topics.map(topic => (
+          <span key={topic}>{topic}</span>
+        ))}
+
         <Link to="/" state={{ refresh: true }}>
           <img src={ncNewsLogo} alt="NC News logo" id="header-logo" />
         </Link>
