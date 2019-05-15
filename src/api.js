@@ -4,8 +4,8 @@ const url = " https://nc-news-joseph-kempster.herokuapp.com/api";
 export const getArticles = query => {
   return Axios.get(`${url}/articles`, {
     params: query
-  }).then(({ data: { articles } }) => {
-    return articles;
+  }).then(({ data }) => {
+    return data;
   });
 };
 
@@ -42,4 +42,12 @@ export const submitArticle = body => {
   return Axios.post(`${url}/articles/`, body).then(({ data: { article } }) => {
     return article;
   });
+};
+
+export const patchArticle = (id, voteDirection) => {
+  return Axios.patch(`${url}/articles/${id}`, voteDirection).then(
+    ({ data: { article } }) => {
+      return article;
+    }
+  );
 };
