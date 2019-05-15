@@ -17,13 +17,11 @@ class SingleArticle extends Component {
   };
   render() {
     const { article, loading, votes } = this.state;
-    console.log(votes);
     const { state: locationState } = this.props.location;
     return loading ? (
       <p>loading...</p>
     ) : (
       <div>
-        {/* // doesnt work */}
         {locationState && locationState.new && <p>Here, is your article:</p>}
         COMMENTS: {article.comment_count}
         AUTHOR : {article.author}

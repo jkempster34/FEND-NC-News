@@ -51,7 +51,7 @@ class NewArticle extends Component {
     event.preventDefault();
     submitArticle(this.state.postbody)
       .then(article => {
-        navigate(`/articles/${article.article_id}`);
+        navigate(`/articles/${article.article_id}`, { state: { new: true } });
       })
       .catch(() => {
         this.setState({
