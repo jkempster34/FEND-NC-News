@@ -12,7 +12,6 @@ class All extends Component {
   componentDidMount() {
     this.getArticlesBySort(this.state.sortBy);
   }
-  //// check this is okay??
   componentDidUpdate = (prevProps, prevState) => {
     if (this.state.sortBy !== prevState.sortBy) {
       this.getArticlesBySort(this.state.sortBy);

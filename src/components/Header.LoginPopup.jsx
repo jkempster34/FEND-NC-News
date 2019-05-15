@@ -38,7 +38,6 @@ class LoginPopup extends Component {
       .then(validUser => {
         this.props.loginUser(validUser);
         this.props.toggleLoginPopup();
-        this.setState({ wrongLogin: false });
       })
       .catch(() => this.setState({ wrongLogin: true }));
   };
