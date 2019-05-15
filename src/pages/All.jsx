@@ -23,9 +23,12 @@ class All extends Component {
     ) {
       this.fetchArticles(this.state.sortBy, this.state.p, this.state.limit);
     }
+    if (this.props.location.state.refresh) {
+      this.setState({ limit: 10, p: 1, sortBy: "created_at" });
+      this.props.location.state.refresh = false;
+    }
   };
   render() {
-    console.log(this.props, "<<<<<<<<");
     const { articles, loading, sortBy, totalPages, limit, p } = this.state;
     return (
       <div className="Articles">

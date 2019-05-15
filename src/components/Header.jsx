@@ -11,10 +11,12 @@ class Header extends Component {
     const { showLoginPopup } = this.state;
     return (
       <div className="Header">
-        <Link to="/">
+        <Link to="/" state={{ refresh: true }}>
           <img src={ncNewsLogo} alt="NC News logo" id="header-logo" />
         </Link>
-        <Link to="/">All</Link>
+        <Link to="/" state={{ refresh: true }}>
+          All
+        </Link>
         <Link to="/topics">Topics</Link>
         <Link to="/new-article">
           <button>ADD NEW ARTICLE</button>
