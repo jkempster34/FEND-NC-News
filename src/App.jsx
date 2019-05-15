@@ -11,7 +11,7 @@ import { getTopics } from "./api.js";
 class App extends Component {
   state = {
     loggedInUser: "",
-    topics: ""
+    topics: []
   };
   componentDidMount() {
     this.fetchTopics();
@@ -23,7 +23,7 @@ class App extends Component {
           loginUser={this.loginUser}
           loggedInUser={this.state.loggedInUser}
           logOutUser={this.logOutUser}
-          fetchTopics={this.fetchTopics}
+          topics={this.state.topics}
         />
         <Router>
           <All path="/" />
@@ -48,7 +48,8 @@ class App extends Component {
 
   fetchTopics = () => {
     getTopics().then(topics => {
-      this.setState({ topics: topics.slug });
+      const slugs = topics.map(topic => topic.slug);
+      this.setState({ topics: slugs });
     });
   };
 }
