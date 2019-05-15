@@ -14,10 +14,12 @@ class SingleArticle extends Component {
   };
   render() {
     const { article, loading } = this.state;
+    const { state: locationState } = this.props.location;
     return loading ? (
       <p>loading...</p>
     ) : (
       <div>
+        {locationState && locationState.new && <p>Here, is your article:</p>}
         COMMENTS: {article.comment_count}
         AUTHOR : {article.author}
         CREATED_AT: {article.created_at}

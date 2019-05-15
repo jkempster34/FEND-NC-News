@@ -53,11 +53,11 @@ class NewArticle extends Component {
       .then(article => {
         navigate(`/articles/${article.article_id}`);
       })
-      .catch(() => {
+      .catch(
         this.setState({
           incompleteArticleForm: true
-        });
-      });
+        })
+      );
   };
 
   handleChange = event => {

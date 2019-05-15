@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import { changeTimeToAgo } from "../utils/changeTimeToAgo.js";
 
 const ArticlesList = props => {
   const { articles, loading } = props;
@@ -13,7 +14,7 @@ const ArticlesList = props => {
             <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
             COMMENTS: {article.comment_count}
             AUTHOR : {article.author}
-            CREATED_AT: {article.created_at}
+            CREATED_AT: {changeTimeToAgo(article.created_at)}
             VOTES: {article.votes}
           </li>
         );
