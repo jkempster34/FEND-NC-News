@@ -15,13 +15,7 @@ class Header extends Component {
           All
         </Link>
         {topics.map(topic => (
-          <Link
-            to={`/${topic}`}
-            key={topic}
-            onClick={() => {
-              this.setCurrentTopic(topic);
-            }}
-          >
+          <Link to={`/${topic}`} key={topic}>
             <span>{topic}</span>
           </Link>
         ))}
@@ -53,10 +47,6 @@ class Header extends Component {
 
   handleLogOut = () => {
     this.props.logOutUser();
-  };
-
-  setCurrentTopic = topic => {
-    this.props.changeCurrentTopic(topic);
   };
 }
 
