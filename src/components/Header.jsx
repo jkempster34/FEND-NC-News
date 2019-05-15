@@ -12,12 +12,12 @@ class Header extends Component {
     return (
       <div className="Header">
         <Link to="/" state={{ refresh: true }}>
-          <img src={ncNewsLogo} alt="NC News logo" id="header-logo" />
-        </Link>
-        <Link to="/" state={{ refresh: true }}>
           All
         </Link>
         <Link to="/topics">Topics</Link>
+        <Link to="/" state={{ refresh: true }}>
+          <img src={ncNewsLogo} alt="NC News logo" id="header-logo" />
+        </Link>
         <Link to="/new-article">
           <button>ADD NEW ARTICLE</button>
         </Link>
