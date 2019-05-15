@@ -9,17 +9,22 @@ class Header extends Component {
   render() {
     const { loggedInUser, loginUser, topics } = this.props;
     const { showLoginPopup } = this.state;
-    /// DO THIS
-    console.log(topics, "<<");
     return (
       <div className="Header">
         <Link to="/" state={{ refresh: true }}>
           All
         </Link>
         {topics.map(topic => (
-          <span key={topic}>{topic}</span>
+          <Link
+            to={`/${topic}`}
+            key={topic}
+            onClick={() => {
+              this.setCurrentTopic(topic);
+            }}
+          >
+            <span>{topic}</span>
+          </Link>
         ))}
-
         <Link to="/" state={{ refresh: true }}>
           <img src={ncNewsLogo} alt="NC News logo" id="header-logo" />
         </Link>
@@ -48,6 +53,10 @@ class Header extends Component {
 
   handleLogOut = () => {
     this.props.logOutUser();
+  };
+
+  setCurrentTopic = topic => {
+    this.props.changeCurrentTopic(topic);
   };
 }
 
