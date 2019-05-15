@@ -11,14 +11,12 @@ import { getTopics } from "./api.js";
 class App extends Component {
   state = {
     loggedInUser: "",
-    topics: [],
-    currentTopic: ""
+    topics: []
   };
   componentDidMount() {
     this.fetchTopics();
   }
   render() {
-    console.log(this.state.currentTopic, "<<");
     return (
       <div className="App">
         <Header
@@ -26,10 +24,10 @@ class App extends Component {
           loggedInUser={this.state.loggedInUser}
           logOutUser={this.logOutUser}
           topics={this.state.topics}
-          changeCurrentTopic={this.changeCurrentTopic}
         />
         <Router>
-          <All path={`/${this.state.currentTopic}`} />
+          <All path="/" />
+          <All path="/:topic" />
           <SingleArticle path="/articles/:article_id" />
           <NewArticle
             path="/new-article"
@@ -54,10 +52,6 @@ class App extends Component {
       const slugs = topics.map(topic => topic.slug);
       this.setState({ topics: slugs });
     });
-  };
-
-  changeCurrentTopic = topic => {
-    this.setState({ currentTopic: topic });
   };
 }
 
