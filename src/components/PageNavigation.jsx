@@ -1,7 +1,6 @@
 import React from "react";
 
 const PageNavigation = props => {
-  console.log(props, "<<");
   const { changePage, totalPages, currentPage, limit } = props;
   const numberButtons = [];
   const pageTotal = Math.ceil(totalPages / limit);
