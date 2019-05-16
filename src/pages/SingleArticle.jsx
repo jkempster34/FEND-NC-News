@@ -9,11 +9,19 @@ class SingleArticle extends Component {
     article: null,
     votes: 0,
     loading: true,
-    buttonClicked: false
+    buttonClicked: false,
+    commentCount: 0
   };
   componentDidMount = () => {
     getArticleById(this.props.article_id)
-      .then(article => this.setState({ article, loading: false, votes: 0 }))
+      .then(article =>
+        this.setState({
+          article,
+          loading: false,
+          votes: 0,
+          commentCount: article.comment_count
+        })
+      )
       .catch(({ response: { data, status } }) => {
         console.log(data.msg, status);
         navigate("/not-found", {
@@ -23,6 +31,7 @@ class SingleArticle extends Component {
       });
   };
   render() {
+    console.log(this.state.article);
     const { article, loading, votes } = this.state;
     const { state: locationState } = this.props.location;
     return loading ? (
@@ -30,7 +39,7 @@ class SingleArticle extends Component {
     ) : (
       <div>
         {locationState && locationState.new && <p>Here, is your article:</p>}
-        COMMENTS: {article.comment_count}
+        COMMENTS: {this.state.commentCount}
         AUTHOR : {article.author}
         CREATED_AT: {article.created_at}
         VOTES: {article.votes + votes}
@@ -58,6 +67,7 @@ class SingleArticle extends Component {
         <CommentsForArticle
           articleId={this.props.article_id}
           loggedInUser={this.props.loggedInUser}
+          changeCommentCount={this.changeCommentCount}
         />
       </div>
     );
@@ -71,6 +81,11 @@ class SingleArticle extends Component {
         votes: newVote
       };
     });
+  };
+
+  changeCommentCount = num => {
+    console.log(this.state.article);
+    this.setState({ commentCount: +this.state.commentCount + num });
   };
 }
 
