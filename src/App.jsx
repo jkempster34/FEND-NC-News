@@ -6,6 +6,7 @@ import SingleArticle from "./pages/SingleArticle.jsx";
 import NewArticle from "./pages/NewArticle.jsx";
 import Header from "./components/Header.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import ShowError from "./pages/ShowError.jsx";
 import { getTopics } from "./api.js";
 
 class App extends Component {
@@ -33,7 +34,8 @@ class App extends Component {
             path="/new-article"
             loggedInUser={this.state.loggedInUser}
           />
-          <NotFound default />
+          <ShowError path="not-found" />
+          <ShowError default />
         </Router>
       </div>
     );

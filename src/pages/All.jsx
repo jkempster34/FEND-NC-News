@@ -3,8 +3,6 @@ import ArticlesList from "../components/ArticlesList";
 import { getArticles } from "../api.js";
 import PageNavigation from "../components/PageNavigation";
 
-// go to football then keepo refreshing
-
 class All extends Component {
   state = {
     sortBy: "created_at",
@@ -12,50 +10,38 @@ class All extends Component {
     loading: true,
     p: 1,
     limit: 10,
-    totalPages: 0,
-    topic: ""
+    totalPages: 0
   };
   componentDidMount() {
-    this.fetchArticles(this.state.sortBy, this.state.topic);
-    this.setState({ topic: this.props.topic });
+    this.fetchArticles(
+      this.state.sortBy,
+      undefined,
+      undefined,
+      this.props.topic
+    );
   }
   componentDidUpdate = (prevProps, prevState) => {
-    console.log(
-      prevState.sortBy,
-      prevState.p,
-      prevState.limit,
-      prevState.topic
-    );
-    console.log(
-      this.state.sortBy,
-      this.state.p,
-      this.state.limit,
-      this.state.topic
-    );
     if (
       this.state.sortBy !== prevState.sortBy ||
       this.state.p !== prevState.p ||
       this.state.limit !== prevState.limit ||
-      this.state.topic !== prevState.topic
+      this.props.topic !== prevProps.topic
     ) {
-      console.log(this.state.topic, "hui");
       this.fetchArticles(
         this.state.sortBy,
         this.state.p,
         this.state.limit,
-        this.state.topic
+        this.props.topic
       );
     }
-    if (this.props.location && this.props.location.state.refresh) {
+    const { state = {} } = this.props.location;
+    if (state && state.refresh) {
       this.setState({
         limit: 10,
         p: 1,
         sortBy: "created_at"
       });
       this.props.location.state.refresh = false;
-    }
-    if (this.props.topic !== prevProps.topic) {
-      this.setState({ topic: this.props.topic });
     }
   };
   render() {
@@ -101,14 +87,16 @@ class All extends Component {
   handleLimit = event => {
     this.setState({ limit: event.target.value });
   };
+
   fetchArticles = (sortBy, page, limit, topic) => {
-    console.log(topic, "topic4");
-    getArticles({ sort_by: sortBy, p: page, limit: limit, topic: topic }).then(
-      ({ articles, total_count }) => {
-        console.log(topic, "<<----");
-        this.setState({ articles, loading: false, totalPages: total_count });
-      }
-    );
+    getArticles({
+      sort_by: sortBy,
+      p: page,
+      limit: limit,
+      topic: topic
+    }).then(({ articles, total_count }) => {
+      this.setState({ articles, loading: false, totalPages: total_count });
+    });
   };
   changePage = (pageNum, numButton) => {
     if (numButton) {
