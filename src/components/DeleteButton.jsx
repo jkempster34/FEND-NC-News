@@ -6,8 +6,9 @@ class DeleteButton extends Component {
     return <button onClick={this.removeComment}>Delete</button>;
   }
   removeComment = () => {
-    deleteComment(this.props.commentId);
-    this.props.removeCommentFromList(this.props.commentId);
+    deleteComment(this.props.commentId).then(() => {
+      this.props.repopulateList(this.props.articleId);
+    });
   };
 }
 

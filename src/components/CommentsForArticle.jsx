@@ -9,7 +9,6 @@ class CommentsForArticle extends Component {
     comments: null,
     loading: true
   };
-
   componentDidMount = () => {
     getCommentsByArticleId(this.props.articleId).then(comments => {
       this.setState({ comments, loading: false });
@@ -17,7 +16,6 @@ class CommentsForArticle extends Component {
   };
   render() {
     const { comments, loading } = this.state;
-    console.log(this.props.loggedInUser);
     return loading ? (
       <p>loading...</p>
     ) : (
@@ -42,7 +40,8 @@ class CommentsForArticle extends Component {
                 />
                 <DeleteButton
                   commentId={comment.comment_id}
-                  removeCommentFromList={this.removeCommentFromList}
+                  repopulateList={this.repopulateList}
+                  articleId={this.props.articleId}
                 />
               </li>
             );
@@ -56,9 +55,10 @@ class CommentsForArticle extends Component {
     console.log(this.state.comments.length);
     this.props.changeCommentCount(1);
   };
-  removeCommentFromList = commentId => {
-    console.log(this.state.comments);
-    // this.setState({comments:})
+  repopulateList = articleId => {
+    getCommentsByArticleId(this.props.articleId).then(comments => {
+      this.setState({ comments, loading: false });
+    });
   };
 }
 
