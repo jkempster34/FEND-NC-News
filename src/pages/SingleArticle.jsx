@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { getArticleById } from "../api.js";
 import CommentsForArticle from "../components/CommentsForArticle.jsx";
-import { patchArticle } from "../api.js";
+
 import { navigate } from "@reach/router";
+import VoteButtons from "../components/VoteButtons.jsx";
 
 class SingleArticle extends Component {
   state = {
@@ -18,7 +19,7 @@ class SingleArticle extends Component {
         this.setState({
           article,
           loading: false,
-          votes: 0,
+          votes: article.votes,
           commentCount: article.comment_count
         })
       )
@@ -31,7 +32,6 @@ class SingleArticle extends Component {
       });
   };
   render() {
-    console.log(this.state.article);
     const { article, loading, votes } = this.state;
     const { state: locationState } = this.props.location;
     return loading ? (
@@ -42,25 +42,12 @@ class SingleArticle extends Component {
         COMMENTS: {this.state.commentCount}
         AUTHOR : {article.author}
         CREATED_AT: {article.created_at}
-        VOTES: {article.votes + votes}
         BODY: {article.body}
         <div>
-          <button
-            disabled={votes === 1}
-            onClick={() => {
-              this.handleVote(1);
-            }}
-          >
-            like
-          </button>
-          <button
-            disabled={votes === -1}
-            onClick={() => {
-              this.handleVote(-1);
-            }}
-          >
-            dislike
-          </button>
+          <VoteButtons
+            articleId={this.props.article_id}
+            votes={this.state.votes}
+          />
         </div>
         <p>....</p>
         <h4>Comments</h4>
@@ -73,18 +60,7 @@ class SingleArticle extends Component {
     );
   }
 
-  handleVote = direction => {
-    patchArticle(this.props.article_id, { inc_votes: direction });
-    this.setState(prevState => {
-      const newVote = prevState.votes + direction;
-      return {
-        votes: newVote
-      };
-    });
-  };
-
   changeCommentCount = num => {
-    console.log(this.state.article);
     this.setState({ commentCount: +this.state.commentCount + num });
   };
 }
