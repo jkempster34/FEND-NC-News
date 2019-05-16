@@ -5,7 +5,8 @@ import PostCommentForm from "../components/PostCommentForm.jsx";
 class CommentsForArticle extends Component {
   state = {
     comments: null,
-    loading: true
+    loading: true,
+    votes: 0
   };
 
   componentDidMount = () => {
@@ -14,7 +15,7 @@ class CommentsForArticle extends Component {
     });
   };
   render() {
-    const { comments, loading } = this.state;
+    const { comments, loading, votes } = this.state;
     return loading ? (
       <p>loading...</p>
     ) : (
@@ -33,6 +34,22 @@ class CommentsForArticle extends Component {
                 AUTHOR : {comment.author}
                 CREATED_AT: {comment.created_at}
                 VOTES: {comment.votes}
+                <button
+                  disabled={votes === 1}
+                  onClick={() => {
+                    this.handleVote(1);
+                  }}
+                >
+                  like
+                </button>
+                <button
+                  disabled={votes === -1}
+                  onClick={() => {
+                    this.handleVote(-1);
+                  }}
+                >
+                  dislike
+                </button>
               </li>
             );
           })}
@@ -42,6 +59,7 @@ class CommentsForArticle extends Component {
   }
   addNewComment = newComment => {
     this.setState({ comments: [newComment, ...this.state.comments] });
+    this.props.changeCommentCount(1);
   };
 }
 
