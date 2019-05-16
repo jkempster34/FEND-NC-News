@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getCommentsByArticleId } from "../api.js";
 import PostCommentForm from "../components/PostCommentForm.jsx";
 import VoteButtons from "./VoteButtons.jsx";
+import DeleteButton from "./DeleteButton.jsx";
 
 class CommentsForArticle extends Component {
   state = {
@@ -16,6 +17,7 @@ class CommentsForArticle extends Component {
   };
   render() {
     const { comments, loading } = this.state;
+    console.log(this.props.loggedInUser);
     return loading ? (
       <p>loading...</p>
     ) : (
@@ -38,6 +40,10 @@ class CommentsForArticle extends Component {
                   votes={comment.votes}
                   type={"comment"}
                 />
+                <DeleteButton
+                  commentId={comment.comment_id}
+                  removeCommentFromList={this.removeCommentFromList}
+                />
               </li>
             );
           })}
@@ -47,7 +53,12 @@ class CommentsForArticle extends Component {
   }
   addNewComment = newComment => {
     this.setState({ comments: [newComment, ...this.state.comments] });
+    console.log(this.state.comments.length);
     this.props.changeCommentCount(1);
+  };
+  removeCommentFromList = commentId => {
+    console.log(this.state.comments);
+    // this.setState({comments:})
   };
 }
 

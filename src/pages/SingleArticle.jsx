@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { getArticleById } from "../api.js";
 import CommentsForArticle from "../components/CommentsForArticle.jsx";
-
 import { navigate } from "@reach/router";
 import VoteButtons from "../components/VoteButtons.jsx";
 
