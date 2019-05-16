@@ -58,3 +58,11 @@ export const postComment = (articleId, body) => {
     }
   );
 };
+
+export const patchComment = (commentId, voteDirection) => {
+  return Axios.patch(`${url}/comments/${commentId}/`, voteDirection).then(
+    ({ data: { article } }) => {
+      return article;
+    }
+  );
+};

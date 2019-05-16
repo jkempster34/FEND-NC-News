@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { getCommentsByArticleId } from "../api.js";
+import { getCommentsByArticleId, patchComment } from "../api.js";
 import PostCommentForm from "../components/PostCommentForm.jsx";
+
+////// adding votes to each comment, adding new component of voteButtons
 
 class CommentsForArticle extends Component {
   state = {
@@ -60,6 +62,15 @@ class CommentsForArticle extends Component {
   addNewComment = newComment => {
     this.setState({ comments: [newComment, ...this.state.comments] });
     this.props.changeCommentCount(1);
+  };
+  handleVote = direction => {
+    patchComment(this.props.article_id, { inc_votes: direction });
+    this.setState(prevState => {
+      const newVote = prevState.votes + direction;
+      return {
+        votes: newVote
+      };
+    });
   };
 }
 
