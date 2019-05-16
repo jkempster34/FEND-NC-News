@@ -5,7 +5,6 @@ import All from "./pages/All.jsx";
 import SingleArticle from "./pages/SingleArticle.jsx";
 import NewArticle from "./pages/NewArticle.jsx";
 import Header from "./components/Header.jsx";
-import NotFound from "./pages/NotFound.jsx";
 import ShowError from "./pages/ShowError.jsx";
 import { getTopics } from "./api.js";
 
@@ -15,6 +14,10 @@ class App extends Component {
     topics: []
   };
   componentDidMount() {
+    if (localStorage.loggedInUser !== "") {
+      this.setState({ loggedInUser: localStorage.loggedInUser });
+    }
+
     this.fetchTopics();
   }
   render() {
@@ -43,10 +46,12 @@ class App extends Component {
 
   loginUser = username => {
     this.setState({ loggedInUser: username });
+    localStorage.setItem("loggedInUser", username);
   };
 
   logOutUser = () => {
     this.setState({ loggedInUser: "" });
+    localStorage.setItem("loggedInUser", "");
   };
 
   fetchTopics = () => {
