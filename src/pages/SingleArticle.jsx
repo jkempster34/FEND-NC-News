@@ -49,6 +49,7 @@ class SingleArticle extends Component {
             votes={votes}
             type={"article"}
             loginUser={loginUser}
+            loggedInUser={this.props.loggedInUser}
           />
         </div>
         <p>....</p>
@@ -58,6 +59,7 @@ class SingleArticle extends Component {
           loggedInUser={this.props.loggedInUser}
           changeCommentCount={this.changeCommentCount}
           loginUser={loginUser}
+          commentCount={this.state.commentCount}
         />
       </div>
     );

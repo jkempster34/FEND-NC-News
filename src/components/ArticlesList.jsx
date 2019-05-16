@@ -22,6 +22,7 @@ const ArticlesList = props => {
               votes={article.votes}
               type={"article"}
               loginUser={props.loginUser}
+              loggedInUser={props.loggedInUser}
             />
           </li>
         );

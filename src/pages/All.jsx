@@ -15,19 +15,25 @@ class All extends Component {
   componentDidMount() {
     this.fetchArticles(
       this.state.sortBy,
-      undefined,
-      undefined,
+      this.state.p,
+      this.state.limit,
       this.props.topic
     );
   }
   componentDidUpdate = (prevProps, prevState) => {
     if (
       this.state.sortBy !== prevState.sortBy ||
-      this.state.p !== prevState.p ||
       this.state.limit !== prevState.limit ||
       this.props.topic !== prevProps.topic
     ) {
       this.setState({ p: 1 });
+      this.fetchArticles(
+        this.state.sortBy,
+        this.state.p,
+        this.state.limit,
+        this.props.topic
+      );
+    } else if (this.state.p !== prevState.p) {
       this.fetchArticles(
         this.state.sortBy,
         this.state.p,
@@ -74,6 +80,7 @@ class All extends Component {
           loading={loading}
           currentTopic={topic}
           loginUser={this.props.loginUser}
+          loggedInUser={this.props.loggedInUser}
         />
         <PageNavigation
           changePage={this.changePage}

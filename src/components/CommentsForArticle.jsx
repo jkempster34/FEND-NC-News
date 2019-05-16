@@ -3,19 +3,48 @@ import { getCommentsByArticleId } from "../api.js";
 import PostCommentForm from "../components/PostCommentForm.jsx";
 import VoteButtons from "./VoteButtons.jsx";
 import DeleteButton from "./DeleteButton.jsx";
+import PageNavigation from "./PageNavigation.jsx";
 
 class CommentsForArticle extends Component {
   state = {
-    comments: null,
-    loading: true
+    comments: [],
+    loading: true,
+    sortBy: "created_at",
+    p: 1,
+    limit: 10
   };
   componentDidMount = () => {
-    getCommentsByArticleId(this.props.articleId).then(comments => {
-      this.setState({ comments, loading: false });
-    });
+    this.repopulateList(
+      this.props.articleId,
+      this.state.sortBy,
+      this.state.p,
+      this.state.limit
+    );
   };
+  componentDidUpdate = (prevProps, prevState) => {
+    if (
+      this.state.sortBy !== prevState.sortBy ||
+      this.state.limit !== prevState.limit
+    ) {
+      this.setState({ p: 1 });
+      this.repopulateList(
+        this.props.articleId,
+        this.state.sortBy,
+        this.state.p,
+        this.state.limit
+      );
+    } else if (this.state.p !== prevState.p) {
+      this.repopulateList(
+        this.props.articleId,
+        this.state.sortBy,
+        this.state.p,
+        this.state.limit
+      );
+    }
+  };
+
   render() {
-    const { comments, loading } = this.state;
+    const { comments, loading, sortBy, limit, p } = this.state;
     return loading ? (
       <p>loading...</p>
     ) : (
@@ -26,6 +55,15 @@ class CommentsForArticle extends Component {
           articleId={this.props.articleId}
           addNewComment={this.addNewComment}
         />
+        <select value={sortBy} onChange={this.handleSort}>
+          <option value="created_at">Recent</option>
+          <option value="votes">Votes</option>
+        </select>
+        <select value={limit} onChange={this.handleLimit}>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={100}>100</option>
+        </select>
         <ul>
           {comments.map(comment => {
             return (
@@ -40,27 +78,60 @@ class CommentsForArticle extends Component {
                   loggedInUser={this.props.loggedInUser}
                   loginUser={this.props.loginUser}
                 />
-                <DeleteButton
-                  commentId={comment.comment_id}
-                  repopulateList={this.repopulateList}
-                  articleId={this.props.articleId}
-                />
+                {this.props.loggedInUser && (
+                  <DeleteButton
+                    commentId={comment.comment_id}
+                    repopulateList={this.repopulateList}
+                    articleId={this.props.articleId}
+                  />
+                )}
               </li>
             );
           })}
         </ul>
+        <PageNavigation
+          changePage={this.changePage}
+          totalPages={this.props.commentCount}
+          currentPage={p}
+          limit={limit}
+        />
       </div>
     );
   }
   addNewComment = newComment => {
     this.setState({ comments: [newComment, ...this.state.comments] });
-    console.log(this.state.comments.length);
     this.props.changeCommentCount(1);
   };
-  repopulateList = articleId => {
-    getCommentsByArticleId(articleId).then(comments => {
+
+  repopulateList = (articleId, sortBy, page, limit) => {
+    getCommentsByArticleId(articleId, {
+      sort_by: sortBy,
+      p: page,
+      limit: limit
+    }).then(({ comments }) => {
       this.setState({ comments, loading: false });
     });
+    this.props.changeCommentCount(-1);
+  };
+
+  changePage = (pageNum, numButton) => {
+    if (numButton) {
+      this.setState(prevState => {
+        return { p: pageNum };
+      });
+    } else {
+      this.setState(prevState => {
+        return { p: prevState.p + pageNum };
+      });
+    }
+  };
+
+  handleSort = event => {
+    this.setState({ sortBy: event.target.value });
+  };
+
+  handleLimit = event => {
+    this.setState({ limit: event.target.value });
   };
 }
 
