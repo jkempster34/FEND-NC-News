@@ -32,6 +32,7 @@ class SingleArticle extends Component {
   };
   render() {
     const { article, loading, votes } = this.state;
+    const { loginUser } = this.props;
     const { state: locationState } = this.props.location;
     return loading ? (
       <p>loading...</p>
@@ -47,6 +48,7 @@ class SingleArticle extends Component {
             articleId={this.props.article_id}
             votes={votes}
             type={"article"}
+            loginUser={loginUser}
           />
         </div>
         <p>....</p>
@@ -55,6 +57,7 @@ class SingleArticle extends Component {
           articleId={this.props.article_id}
           loggedInUser={this.props.loggedInUser}
           changeCommentCount={this.changeCommentCount}
+          loginUser={loginUser}
         />
       </div>
     );

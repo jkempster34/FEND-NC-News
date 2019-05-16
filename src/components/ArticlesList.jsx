@@ -11,7 +11,6 @@ const ArticlesList = props => {
   ) : (
     <ul>
       {articles.map(article => {
-        console.log(article);
         return (
           <li key={article.article_id}>
             <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
@@ -22,6 +21,7 @@ const ArticlesList = props => {
               articleId={article.article_id}
               votes={article.votes}
               type={"article"}
+              loginUser={props.loginUser}
             />
           </li>
         );

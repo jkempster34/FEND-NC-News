@@ -30,13 +30,15 @@ class CommentsForArticle extends Component {
           {comments.map(comment => {
             return (
               <li key={comment.comment_id}>
-                body: {comment.body}
+                BODY: {comment.body}
                 AUTHOR : {comment.author}
                 CREATED_AT: {comment.created_at}
                 <VoteButtons
                   commentId={comment.comment_id}
                   votes={comment.votes}
                   type={"comment"}
+                  loggedInUser={this.props.loggedInUser}
+                  loginUser={this.props.loginUser}
                 />
                 <DeleteButton
                   commentId={comment.comment_id}
@@ -56,7 +58,7 @@ class CommentsForArticle extends Component {
     this.props.changeCommentCount(1);
   };
   repopulateList = articleId => {
-    getCommentsByArticleId(this.props.articleId).then(comments => {
+    getCommentsByArticleId(articleId).then(comments => {
       this.setState({ comments, loading: false });
     });
   };
