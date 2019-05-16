@@ -15,9 +15,9 @@ class App extends Component {
   };
   componentDidMount() {
     if (localStorage.loggedInUser !== "") {
-      this.setState({ loggedInUser: localStorage.loggedInUser });
+      const userInStorage = localStorage.getItem("loggedInUser");
+      this.setState({ loggedInUser: JSON.parse(userInStorage) });
     }
-
     this.fetchTopics();
   }
   render() {
@@ -32,7 +32,10 @@ class App extends Component {
         <Router>
           <All path="/" />
           <All path="/:topic" />
-          <SingleArticle path="/articles/:article_id" />
+          <SingleArticle
+            path="/articles/:article_id"
+            loggedInUser={this.state.loggedInUser}
+          />
           <NewArticle
             path="/new-article"
             loggedInUser={this.state.loggedInUser}
@@ -46,7 +49,7 @@ class App extends Component {
 
   loginUser = username => {
     this.setState({ loggedInUser: username });
-    localStorage.setItem("loggedInUser", username);
+    localStorage.setItem("loggedInUser", JSON.stringify(username));
   };
 
   logOutUser = () => {
