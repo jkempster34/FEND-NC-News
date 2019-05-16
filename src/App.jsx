@@ -30,8 +30,16 @@ class App extends Component {
           topics={this.state.topics}
         />
         <Router>
-          <All path="/" loginUser={this.loginUser} />
-          <All path="/:topic" loginUser={this.loginUser} />
+          <All
+            path="/"
+            loginUser={this.loginUser}
+            loggedInUser={this.state.loggedInUser}
+          />
+          <All
+            path="/:topic"
+            loginUser={this.loginUser}
+            loggedInUser={this.state.loggedInUser}
+          />
           <SingleArticle
             path="/articles/:article_id"
             loggedInUser={this.state.loggedInUser}

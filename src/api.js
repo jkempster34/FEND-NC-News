@@ -29,12 +29,12 @@ export const getArticleById = article_id => {
   );
 };
 
-export const getCommentsByArticleId = article_id => {
-  return Axios.get(`${url}/articles/${article_id}/comments`).then(
-    ({ data: { comments } }) => {
-      return comments;
-    }
-  );
+export const getCommentsByArticleId = (article_id, query) => {
+  return Axios.get(`${url}/articles/${article_id}/comments`, {
+    params: query
+  }).then(({ data }) => {
+    return data;
+  });
 };
 
 export const postArticle = body => {
