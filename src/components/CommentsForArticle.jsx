@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { getCommentsByArticleId, patchComment } from "../api.js";
+import { getCommentsByArticleId } from "../api.js";
 import PostCommentForm from "../components/PostCommentForm.jsx";
-
-////// adding votes to each comment, adding new component of voteButtons
+import VoteButtons from "./VoteButtons.jsx";
 
 class CommentsForArticle extends Component {
   state = {
     comments: null,
-    loading: true,
-    votes: 0
+    loading: true
   };
 
   componentDidMount = () => {
@@ -17,7 +15,7 @@ class CommentsForArticle extends Component {
     });
   };
   render() {
-    const { comments, loading, votes } = this.state;
+    const { comments, loading } = this.state;
     return loading ? (
       <p>loading...</p>
     ) : (
@@ -35,23 +33,11 @@ class CommentsForArticle extends Component {
                 body: {comment.body}
                 AUTHOR : {comment.author}
                 CREATED_AT: {comment.created_at}
-                VOTES: {comment.votes}
-                <button
-                  disabled={votes === 1}
-                  onClick={() => {
-                    this.handleVote(1);
-                  }}
-                >
-                  like
-                </button>
-                <button
-                  disabled={votes === -1}
-                  onClick={() => {
-                    this.handleVote(-1);
-                  }}
-                >
-                  dislike
-                </button>
+                <VoteButtons
+                  commentId={comment.comment_id}
+                  votes={comment.votes}
+                  type={"comment"}
+                />
               </li>
             );
           })}
@@ -62,15 +48,6 @@ class CommentsForArticle extends Component {
   addNewComment = newComment => {
     this.setState({ comments: [newComment, ...this.state.comments] });
     this.props.changeCommentCount(1);
-  };
-  handleVote = direction => {
-    patchComment(this.props.article_id, { inc_votes: direction });
-    this.setState(prevState => {
-      const newVote = prevState.votes + direction;
-      return {
-        votes: newVote
-      };
-    });
   };
 }
 

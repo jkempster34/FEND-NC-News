@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { patchArticle } from "../api.js";
+import { patchArticle, patchComment } from "../api.js";
 
-class voteButtons extends Component {
+class VoteButtons extends Component {
   state = {
     votes: 0
   };
@@ -30,7 +30,11 @@ class voteButtons extends Component {
     );
   }
   handleVote = direction => {
-    patchArticle(this.props.articleId, { inc_votes: direction });
+    if (this.props.type === "article") {
+      patchArticle(this.props.articleId, { inc_votes: direction });
+    } else if (this.props.type === "comment") {
+      patchComment(this.props.commentId, { inc_votes: direction });
+    }
     this.setState(prevState => {
       const newVote = prevState.votes + direction;
       return {
@@ -40,4 +44,4 @@ class voteButtons extends Component {
   };
 }
 
-export default voteButtons;
+export default VoteButtons;
