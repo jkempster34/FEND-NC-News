@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getArticleById } from "../api.js";
 import CommentsForArticle from "../components/CommentsForArticle.jsx";
 import { patchArticle } from "../api.js";
+import { navigate } from "@reach/router";
 
 class SingleArticle extends Component {
   state = {
@@ -11,9 +12,17 @@ class SingleArticle extends Component {
     buttonClicked: false
   };
   componentDidMount = () => {
-    getArticleById(this.props.article_id).then(article =>
-      this.setState({ article, loading: false, votes: article.votes })
-    );
+    getArticleById(this.props.article_id)
+      .then(article =>
+        this.setState({ article, loading: false, votes: article.votes })
+      )
+      .catch(({ response: { data, status } }) => {
+        console.log(data.msg, status);
+        navigate("/not-found", {
+          state: { from: "article", msg: data.msg, status },
+          replace: true
+        });
+      });
   };
   render() {
     const { article, loading, votes } = this.state;
