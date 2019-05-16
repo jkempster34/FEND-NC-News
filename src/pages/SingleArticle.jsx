@@ -13,9 +13,7 @@ class SingleArticle extends Component {
   };
   componentDidMount = () => {
     getArticleById(this.props.article_id)
-      .then(article =>
-        this.setState({ article, loading: false, votes: article.votes })
-      )
+      .then(article => this.setState({ article, loading: false, votes: 0 }))
       .catch(({ response: { data, status } }) => {
         console.log(data.msg, status);
         navigate("/not-found", {
@@ -57,7 +55,10 @@ class SingleArticle extends Component {
         </div>
         <p>....</p>
         <h4>Comments</h4>
-        <CommentsForArticle articleId={this.props.article_id} />
+        <CommentsForArticle
+          articleId={this.props.article_id}
+          loggedInUser={this.props.loggedInUser}
+        />
       </div>
     );
   }

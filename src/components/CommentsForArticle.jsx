@@ -7,6 +7,7 @@ class CommentsForArticle extends Component {
     comments: null,
     loading: true
   };
+
   componentDidMount = () => {
     getCommentsByArticleId(this.props.articleId).then(comments => {
       this.setState({ comments, loading: false });
@@ -19,7 +20,11 @@ class CommentsForArticle extends Component {
     ) : (
       <div>
         {" "}
-        <PostCommentForm />
+        <PostCommentForm
+          loggedInUser={this.props.loggedInUser}
+          articleId={this.props.articleId}
+          addNewComment={this.addNewComment}
+        />
         <ul>
           {comments.map(comment => {
             return (
@@ -35,6 +40,9 @@ class CommentsForArticle extends Component {
       </div>
     );
   }
+  addNewComment = newComment => {
+    this.setState({ comments: [newComment, ...this.state.comments] });
+  };
 }
 
 export default CommentsForArticle;

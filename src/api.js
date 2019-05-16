@@ -37,8 +37,7 @@ export const getCommentsByArticleId = article_id => {
   );
 };
 
-export const submitArticle = body => {
-  console.log(body);
+export const postArticle = body => {
   return Axios.post(`${url}/articles/`, body).then(({ data: { article } }) => {
     return article;
   });
@@ -48,6 +47,14 @@ export const patchArticle = (id, voteDirection) => {
   return Axios.patch(`${url}/articles/${id}`, voteDirection).then(
     ({ data: { article } }) => {
       return article;
+    }
+  );
+};
+
+export const postComment = (articleId, body) => {
+  return Axios.post(`${url}/articles/${articleId}/comments`, body).then(
+    ({ data: { comment } }) => {
+      return comment;
     }
   );
 };

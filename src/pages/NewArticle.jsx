@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { submitArticle } from "../api.js";
+import { postArticle } from "../api.js";
 import { navigate } from "@reach/router";
 
 class NewArticle extends Component {
@@ -49,7 +49,7 @@ class NewArticle extends Component {
   }
   submitArticle = event => {
     event.preventDefault();
-    submitArticle(this.state.postbody)
+    postArticle(this.state.postbody)
       .then(article => {
         navigate(`/articles/${article.article_id}`, { state: { new: true } });
       })

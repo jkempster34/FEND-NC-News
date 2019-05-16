@@ -4,6 +4,7 @@ const PageNavigation = props => {
   const { changePage, totalPages, currentPage, limit } = props;
   const numberButtons = [];
   const pageTotal = Math.ceil(totalPages / limit);
+  // array from
   for (let i = 1; i <= pageTotal; i++) {
     numberButtons.push(i);
   }
