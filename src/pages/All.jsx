@@ -27,6 +27,7 @@ class All extends Component {
       this.state.limit !== prevState.limit ||
       this.props.topic !== prevProps.topic
     ) {
+      this.setState({ p: 1 });
       this.fetchArticles(
         this.state.sortBy,
         this.state.p,
@@ -34,6 +35,7 @@ class All extends Component {
         this.props.topic
       );
     }
+
     const { state = {} } = this.props.location;
     if (state && state.refresh) {
       this.setState({
@@ -71,6 +73,7 @@ class All extends Component {
           articles={articles}
           loading={loading}
           currentTopic={topic}
+          loginUser={this.props.loginUser}
         />
         <PageNavigation
           changePage={this.changePage}
@@ -87,7 +90,6 @@ class All extends Component {
   handleLimit = event => {
     this.setState({ limit: event.target.value });
   };
-
   fetchArticles = (sortBy, page, limit, topic) => {
     getArticles({
       sort_by: sortBy,

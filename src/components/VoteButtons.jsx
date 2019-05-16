@@ -1,31 +1,52 @@
 import React, { Component } from "react";
 import { patchArticle, patchComment } from "../api.js";
+import LoginPopup from "./Header.LoginPopup.jsx";
 
 class VoteButtons extends Component {
   state = {
-    votes: 0
+    votes: 0,
+    showLoginPopup: false
   };
   render() {
-    const { votes } = this.state;
+    const { loggedInUser, loginUser } = this.props;
+    const { votes, showLoginPopup } = this.state;
     return (
       <div>
         <button
           disabled={votes === 1}
-          onClick={() => {
-            this.handleVote(1);
-          }}
+          onClick={
+            loggedInUser
+              ? () => {
+                  this.handleVote(1);
+                }
+              : () => {
+                  this.setState({ showLoginPopup: true });
+                }
+          }
         >
           like
         </button>
         VOTES: {this.props.votes + votes}
         <button
           disabled={votes === -1}
-          onClick={() => {
-            this.handleVote(-1);
-          }}
+          onClick={
+            loggedInUser
+              ? () => {
+                  this.handleVote(-1);
+                }
+              : () => {
+                  this.setState({ showLoginPopup: true });
+                }
+          }
         >
           dislike
         </button>
+        {showLoginPopup && (
+          <LoginPopup
+            toggleLoginPopup={this.toggleLoginPopup}
+            loginUser={loginUser}
+          />
+        )}
       </div>
     );
   }
@@ -40,6 +61,12 @@ class VoteButtons extends Component {
       return {
         votes: newVote
       };
+    });
+  };
+
+  toggleLoginPopup = () => {
+    this.setState({
+      showLoginPopup: !this.state.showLoginPopup
     });
   };
 }
