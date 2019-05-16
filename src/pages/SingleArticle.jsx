@@ -46,7 +46,8 @@ class SingleArticle extends Component {
         <div>
           <VoteButtons
             articleId={this.props.article_id}
-            votes={this.state.votes}
+            votes={votes}
+            type={"article"}
           />
         </div>
         <p>....</p>
