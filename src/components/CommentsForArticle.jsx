@@ -11,14 +11,16 @@ class CommentsForArticle extends Component {
     loading: true,
     sortBy: "created_at",
     p: 1,
-    limit: 10
+    limit: 10,
+    newComment: false
   };
   componentDidMount = () => {
     this.repopulateList(
       this.props.articleId,
       this.state.sortBy,
       this.state.p,
-      this.state.limit
+      this.state.limit,
+      0
     );
   };
   componentDidUpdate = (prevProps, prevState) => {
@@ -26,25 +28,28 @@ class CommentsForArticle extends Component {
       this.state.sortBy !== prevState.sortBy ||
       this.state.limit !== prevState.limit
     ) {
-      this.setState({ p: 1 });
-      this.repopulateList(
-        this.props.articleId,
-        this.state.sortBy,
-        this.state.p,
-        this.state.limit
-      );
+      this.setState({ p: 1 }, () => {
+        this.repopulateList(
+          this.props.articleId,
+          this.state.sortBy,
+          this.state.p,
+          this.state.limit,
+          0
+        );
+      });
     } else if (this.state.p !== prevState.p) {
       this.repopulateList(
         this.props.articleId,
         this.state.sortBy,
         this.state.p,
-        this.state.limit
+        this.state.limit,
+        0
       );
     }
   };
 
   render() {
-    const { comments, loading, sortBy, limit, p } = this.state;
+    const { comments, loading, sortBy, limit, p, newComment } = this.state;
     return loading ? (
       <p>loading...</p>
     ) : (
@@ -64,6 +69,7 @@ class CommentsForArticle extends Component {
           <option value={20}>20</option>
           <option value={100}>100</option>
         </select>
+        {newComment && <p>Here is your new comment</p>}
         <ul>
           {comments.map(comment => {
             return (
@@ -99,11 +105,14 @@ class CommentsForArticle extends Component {
     );
   }
   addNewComment = newComment => {
-    this.setState({ comments: [newComment, ...this.state.comments] });
+    this.setState({
+      comments: [newComment, ...this.state.comments],
+      newComment: true
+    });
     this.props.changeCommentCount(1);
   };
 
-  repopulateList = (articleId, sortBy, page, limit) => {
+  repopulateList = (articleId, sortBy, page, limit, num) => {
     getCommentsByArticleId(articleId, {
       sort_by: sortBy,
       p: page,
@@ -111,7 +120,7 @@ class CommentsForArticle extends Component {
     }).then(({ comments }) => {
       this.setState({ comments, loading: false });
     });
-    this.props.changeCommentCount(-1);
+    this.props.changeCommentCount(num);
   };
 
   changePage = (pageNum, numButton) => {

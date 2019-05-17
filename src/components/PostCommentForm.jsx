@@ -17,7 +17,7 @@ class PostCommentForm extends Component {
         <form onSubmit={this.submitComment}>
           {" "}
           <textarea name="body" onChange={this.handleChange} />
-          <button>Submit</button>
+          <button disabled={!this.state.postbody.body}>Submit</button>
         </form>
       </div>
     );
