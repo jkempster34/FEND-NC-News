@@ -26,13 +26,14 @@ class All extends Component {
       this.state.limit !== prevState.limit ||
       this.props.topic !== prevProps.topic
     ) {
-      this.setState({ p: 1 });
-      this.fetchArticles(
-        this.state.sortBy,
-        this.state.p,
-        this.state.limit,
-        this.props.topic
-      );
+      this.setState({ p: 1 }, () => {
+        this.fetchArticles(
+          this.state.sortBy,
+          this.state.p,
+          this.state.limit,
+          this.props.topic
+        );
+      });
     } else if (this.state.p !== prevState.p) {
       this.fetchArticles(
         this.state.sortBy,
@@ -62,6 +63,7 @@ class All extends Component {
       p,
       topic
     } = this.state;
+    console.log(this.state, "<<<");
     return (
       <div className="Articles">
         <p>Articles...</p>

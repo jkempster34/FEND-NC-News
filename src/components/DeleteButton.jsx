@@ -7,7 +7,7 @@ class DeleteButton extends Component {
   }
   removeComment = () => {
     deleteComment(this.props.commentId).then(() => {
-      this.props.repopulateList(this.props.articleId);
+      this.props.repopulateList(this.props.articleId, "created_at", 1, 10, -1);
     });
   };
 }
