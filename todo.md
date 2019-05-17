@@ -17,4 +17,6 @@ aerticles with no comments show a button (not bug, no nav buttons if less than 1
 
 if you go to 20 comments and then go back to 10, there is no nav buttons (only in comments, not in articles)
 
+<!-- can delete other poeples comments -->
+
 add asc desc buttons

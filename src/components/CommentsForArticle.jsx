@@ -78,7 +78,7 @@ class CommentsForArticle extends Component {
                   loggedInUser={this.props.loggedInUser}
                   loginUser={this.props.loginUser}
                 />
-                {this.props.loggedInUser && (
+                {this.props.loggedInUser.username === comment.author && (
                   <DeleteButton
                     commentId={comment.comment_id}
                     repopulateList={this.repopulateList}
