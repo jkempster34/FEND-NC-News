@@ -49,6 +49,7 @@ class CommentsForArticle extends Component {
   };
 
   render() {
+    console.log(this.props.loggedInUser);
     const { comments, loading, sortBy, limit, p, newComment } = this.state;
     return loading ? (
       <p>loading...</p>
