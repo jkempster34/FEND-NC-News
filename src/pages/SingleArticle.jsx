@@ -23,7 +23,7 @@ class SingleArticle extends Component {
         })
       )
       .catch(({ response: { data, status } }) => {
-        console.log(data.msg, status);
+        // console.log(data.msg, status);
         navigate("/not-found", {
           state: { from: "article", msg: data.msg, status },
           replace: true

@@ -63,7 +63,6 @@ class All extends Component {
       p,
       topic
     } = this.state;
-    console.log(this.state, "<<<");
     return (
       <div className="Articles">
         <p>Articles...</p>

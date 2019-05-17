@@ -14,7 +14,10 @@ class App extends Component {
     topics: []
   };
   componentDidMount() {
-    if (localStorage.loggedInUser !== "") {
+    if (
+      localStorage.loggedInUser !== "" ||
+      localStorage.loggedInUser === undefined
+    ) {
       const userInStorage = localStorage.getItem("loggedInUser");
       this.setState({ loggedInUser: JSON.parse(userInStorage) });
     }
