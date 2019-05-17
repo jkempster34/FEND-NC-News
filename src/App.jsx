@@ -15,8 +15,8 @@ class App extends Component {
   };
   componentDidMount() {
     if (
-      localStorage.loggedInUser !== "" ||
-      localStorage.loggedInUser === undefined
+      localStorage.loggedInUser !== "" &&
+      localStorage.loggedInUser !== undefined
     ) {
       const userInStorage = localStorage.getItem("loggedInUser");
       this.setState({ loggedInUser: JSON.parse(userInStorage) });
@@ -24,6 +24,7 @@ class App extends Component {
     this.fetchTopics();
   }
   render() {
+    console.log(this.state.loggedInUser);
     return (
       <div className="App">
         <Header
