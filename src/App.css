@@ -34,6 +34,9 @@
 }
 
 /* HEADER */
+#login-title {
+  color: white;
+}
 
 #header-logo {
   width: 370px;
