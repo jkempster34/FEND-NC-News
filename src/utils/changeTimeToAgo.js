@@ -11,19 +11,16 @@ export const changeTimeToAgo = datetime => {
 
   if (elapsed < msPerMinute) {
     return (
-      "approximately " +
       Math.round(elapsed / 1000) +
       (Math.round(elapsed / 1000) === 1 ? " second ago" : " seconds ago")
     );
   } else if (elapsed < msPerHour) {
     return (
-      "approximately " +
       Math.round(elapsed / msPerMinute) +
       (Math.round(elapsed / msPerMinute) === 1 ? " minute ago" : " minutes ago")
     );
   } else if (elapsed < msPerDay) {
     return (
-      "approximately " +
       Math.round(elapsed / msPerHour) +
       (Math.round(elapsed / msPerHour) === 1 ? " hour ago" : " hours ago")
     );

@@ -12,7 +12,6 @@ class PostCommentForm extends Component {
     }
   }
   render() {
-    console.log(this.props.loggedInUser, "<<<");
     return (
       <div>
         <form onSubmit={this.submitComment}>
