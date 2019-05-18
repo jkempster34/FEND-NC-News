@@ -24,7 +24,6 @@ class App extends Component {
     this.fetchTopics();
   }
   render() {
-    console.log(this.state.loggedInUser);
     return (
       <div className="App">
         <Header

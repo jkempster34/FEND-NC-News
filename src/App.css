@@ -3,49 +3,19 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* HEADER */
-#login-title {
-  color: white;
-}
-
 #header-logo {
   width: 370px;
   height: 100px;
 }
-
 .Header {
   border: #282c34;
   border-style: solid;
+}
+
+/* HEADER POPUP*/
+#login-title {
+  color: white;
+  font-size: 1.35em;
 }
 
 .login-popup {
@@ -62,24 +32,28 @@
 
 .login-popup-inner {
   max-width: 400px;
-  height: 550px;
+  height: 500px;
   position: absolute;
   left: 7%;
   right: 7%;
   top: 20px;
-  /* bottom: 25%; */
   margin: auto;
   background: white;
   border-radius: 8px;
+  animation: appear 0.3s ease-in;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .login-popup-header {
   background-color: #0db79b;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center; */
-  /* margin-top: 0px; */
-  /* border-radius: 8px; */
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-style: solid;
@@ -89,10 +63,95 @@
 #header-close-button {
   background: url("./images/close-button.png") no-repeat;
   background-size: contain;
-  width: 30px;
-  height: 30px;
+  width: 18px;
+  height: 18px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   border: none;
+  cursor: pointer;
+}
+
+#header-close-button:hover {
+  background: url("./images/close-button-on-hover.png") no-repeat;
+  background-size: contain;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+#login-popup-text {
+  text-align: left;
+  padding: 1em 1.5em 1em 2em;
+  font-size: 0.95em;
+  line-height: 1.5em;
+}
+
+#login-popup-username-label {
+  background-color: #0db79b;
+  display: inline-block;
+  width: 85%;
+  height: 45px;
+  color: white;
+  font-size: 1.2em;
+  line-height: 45px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+#login-popup-username-input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #d9fcf6;
+  font-size: 0.8em;
+  width: 100%;
+  height: 45px;
+  position: relative;
+  top: -4px;
+  box-sizing: border-box;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 0 30px 0 10px;
+}
+
+#login-popup-username-input:focus {
+  border: 1px solid #0a9a82;
+  outline: none;
+}
+
+#login-popup-signin-button {
+  background-color: white;
+  position: relative;
+  top: 5.5em;
+  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 5px 12px;
+  text-align: center;
+  height: 40px;
+  width: 100px;
+  float: left;
+  margin: 2.5em;
+}
+
+#login-popup-signin-button:focus {
+  border: 1px solid #a3a3a3;
+  outline: none;
+}
+
+#login-popup-no-user-exists {
+  color: red;
+  display: block;
+  text-align: left;
+  width: 20em;
+  position: relative;
+  top: 0.5em;
+  left: -8.2em;
 }

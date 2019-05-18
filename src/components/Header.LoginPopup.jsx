@@ -11,26 +11,35 @@ class LoginPopup extends Component {
       <div className="login-popup">
         <div className="login-popup-inner" onKeyDown={this.handleEsc}>
           <div className="login-popup-header">
-            <h1 id="login-title">LOGIN</h1>
+            <h3 id="login-title">LOGIN</h3>
             <button
               onClick={this.props.toggleLoginPopup}
               id="header-close-button"
             />
           </div>
+          <p id="login-popup-text">
+            You can login with one of our users such as{" "}
+            <strong>jessjelly</strong>, <strong>happyamy2016</strong>, or{" "}
+            <strong>weegembump</strong>. Once logged in, NC News will remember
+            who you are in case you visit again.
+          </p>
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Username:{" "}
+            <label id="login-popup-username-label">
+              Username
               <input
+                id="login-popup-username-input"
                 autoFocus
                 onChange={this.handleInput}
                 type="text"
                 placeholder="example: jessjelly"
+                required
               />
             </label>
-            <button>SIGN IN</button>
+            <button id="login-popup-signin-button">Log in</button>
+            {this.state.wrongLogin && (
+              <p id="login-popup-no-user-exists">Incorrect username</p>
+            )}
           </form>
-
-          {this.state.wrongLogin && <p>No user exists!</p>}
         </div>
       </div>
     );
