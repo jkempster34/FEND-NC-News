@@ -64,8 +64,7 @@ class All extends Component {
       topic
     } = this.state;
     return (
-      <div className="Articles">
-        <p>Articles...</p>
+      <div className="articles">
         <select value={sortBy} onChange={this.handleSort}>
           <option value="created_at">Recent</option>
           <option value="comment_count">Comments</option>

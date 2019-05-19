@@ -22,3 +22,5 @@ add asc desc buttons
 error handling
 
 <!-- comments are different between main page and individual article -->
+
+fixe add new article button

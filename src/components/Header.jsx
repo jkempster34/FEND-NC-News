@@ -39,26 +39,24 @@ class Header extends Component {
             />
           </Link>
           {loggedInUser ? (
-            <button className="header-new-article-button">
-              <Link to="/new-article" id="header-new-article-button-link" />
+            <Link to="/new-article" id="header-new-article-button-link">
               add new article
-            </button>
+            </Link>
           ) : (
             <button
-              className="header-new-article-button"
+              id="header-new-article-button-link"
               onClick={this.toggleLoginPopup}
             >
               add new article
             </button>
           )}
           {loggedInUser ? (
-            <button id="header-new-article-button-small">
-              <Link to="/new-article" id="header-new-article-button-link" />
+            <Link to="/new-article" id="header-new-article-button-link-small">
               add
-            </button>
+            </Link>
           ) : (
             <button
-              id="header-new-article-button-small"
+              id="header-new-article-button-link-small"
               onClick={this.toggleLoginPopup}
             >
               add
