@@ -32,29 +32,31 @@ class App extends Component {
           logOutUser={this.logOutUser}
           topics={this.state.topics}
         />
-        <Router>
-          <All
-            path="/"
-            loginUser={this.loginUser}
-            loggedInUser={this.state.loggedInUser}
-          />
-          <All
-            path="/:topic"
-            loginUser={this.loginUser}
-            loggedInUser={this.state.loggedInUser}
-          />
-          <SingleArticle
-            path="/articles/:article_id"
-            loggedInUser={this.state.loggedInUser}
-            loginUser={this.loginUser}
-          />
-          <NewArticle
-            path="/new-article"
-            loggedInUser={this.state.loggedInUser}
-          />
-          <ShowError path="not-found" />
-          <ShowError default />
-        </Router>
+        <div className="main-body">
+          <Router>
+            <All
+              path="/"
+              loginUser={this.loginUser}
+              loggedInUser={this.state.loggedInUser}
+            />
+            <All
+              path="/:topic"
+              loginUser={this.loginUser}
+              loggedInUser={this.state.loggedInUser}
+            />
+            <SingleArticle
+              path="/articles/:article_id"
+              loggedInUser={this.state.loggedInUser}
+              loginUser={this.loginUser}
+            />
+            <NewArticle
+              path="/new-article"
+              loggedInUser={this.state.loggedInUser}
+            />
+            <ShowError path="not-found" />
+            <ShowError default />
+          </Router>
+        </div>
       </div>
     );
   }

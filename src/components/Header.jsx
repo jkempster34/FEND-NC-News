@@ -39,23 +39,56 @@ class Header extends Component {
             />
           </Link>
           {loggedInUser ? (
-            <Link id="header-new-article-button" to="/new-article">
-              <button>ADD NEW ARTICLE</button>
-            </Link>
+            <button className="header-new-article-button">
+              <Link to="/new-article" id="header-new-article-button-link" />
+              add new article
+            </button>
           ) : (
-            <button onClick={this.toggleLoginPopup}>ADD NEW ARTICLE</button>
+            <button
+              className="header-new-article-button"
+              onClick={this.toggleLoginPopup}
+            >
+              add new article
+            </button>
           )}
-          {loggedInUser && <CurrentUserDisplay loggedInUser={loggedInUser} />}
-          <button
-            id="header-sign-in-button"
-            onClick={loggedInUser ? this.handleLogOut : this.toggleLoginPopup}
-          >{`${loggedInUser ? "SIGN OUT" : "SIGN IN"}`}</button>
-          {showLoginPopup && (
-            <LoginPopup
-              loginUser={loginUser}
-              toggleLoginPopup={this.toggleLoginPopup}
-            />
+          {loggedInUser ? (
+            <button id="header-new-article-button-small">
+              <Link to="/new-article" id="header-new-article-button-link" />
+              add
+            </button>
+          ) : (
+            <button
+              id="header-new-article-button-small"
+              onClick={this.toggleLoginPopup}
+            >
+              add
+            </button>
           )}
+          <div
+            id={`${
+              loggedInUser
+                ? "header-user-display"
+                : "header-user-display-logged-out"
+            }`}
+          >
+            {loggedInUser ? (
+              <CurrentUserDisplay loggedInUser={loggedInUser} />
+            ) : (
+              <span id="header-want-to-contribute">want to contribute? </span>
+            )}
+            <span
+              id={`${
+                loggedInUser ? "header-log-out-button" : "header-log-in-button"
+              }`}
+              onClick={loggedInUser ? this.handleLogOut : this.toggleLoginPopup}
+            >{`${loggedInUser ? "log out" : "log in"}`}</span>
+            {showLoginPopup && (
+              <LoginPopup
+                loginUser={loginUser}
+                toggleLoginPopup={this.toggleLoginPopup}
+              />
+            )}
+          </div>
         </div>
       </div>
     );
