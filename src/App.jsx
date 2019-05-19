@@ -59,9 +59,9 @@ class App extends Component {
     );
   }
 
-  loginUser = username => {
-    this.setState({ loggedInUser: username });
-    localStorage.setItem("loggedInUser", JSON.stringify(username));
+  loginUser = user => {
+    this.setState({ loggedInUser: user });
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
   };
 
   logOutUser = () => {
