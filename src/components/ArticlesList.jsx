@@ -9,14 +9,10 @@ const ArticlesList = props => {
   return loading ? (
     <p>loading...</p>
   ) : (
-    <ul>
+    <ul className="articles-list">
       {articles.map(article => {
         return (
-          <li key={article.article_id}>
-            <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
-            COMMENTS: {article.comment_count}
-            AUTHOR : {article.author}
-            CREATED_AT: {changeTimeToAgo(article.created_at)}
+          <li className="articles-list-element" key={article.article_id}>
             <VoteButtons
               articleId={article.article_id}
               votes={article.votes}
@@ -24,6 +20,17 @@ const ArticlesList = props => {
               loginUser={props.loginUser}
               loggedInUser={props.loggedInUser}
             />
+            <span>
+              <Link to={`/articles/${article.article_id}`}>
+                {article.title}
+              </Link>
+              <div>
+                {" "}
+                COMMENTS: {article.comment_count}
+                AUTHOR : {article.author}
+                CREATED_AT: {changeTimeToAgo(article.created_at)}
+              </div>
+            </span>
           </li>
         );
       })}

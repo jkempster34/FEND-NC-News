@@ -15,7 +15,7 @@ body {
   float: none !important;
 }
 .header {
-  /* display: inline-block; */
+  text-align: center;
   max-width: auto !important;
 }
 /* HEADER POPUP*/
@@ -37,6 +37,7 @@ body {
 }
 
 .login-popup-inner {
+  text-align: center;
   white-space: normal;
   max-width: 400px;
   height: 500px;
@@ -92,7 +93,6 @@ body {
 }
 
 #login-popup-text {
-  text-align: left;
   padding: 1em 1.5em 1em 2em;
   font-size: 0.95em;
   line-height: 1.5em;
@@ -253,7 +253,7 @@ body {
   height: 100%;
 }
 
-#header-new-article-button-small {
+#header-new-article-button-link-small {
   display: none;
 }
 
@@ -261,14 +261,11 @@ body {
   #header-logo-link {
     display: none;
   }
-  .header-new-article-button {
-    display: none;
-  }
 
   #header-logo-link-small {
     display: block;
   }
-  #header-new-article-button-small {
+  #header-new-article-button-link-small {
     display: block;
     white-space: nowrap;
     cursor: pointer;
@@ -283,26 +280,14 @@ body {
     color: white;
     font-size: 1em;
     font-weight: bold;
+    text-decoration: none;
   }
-  #header-new-article-button-small-1 {
-    display: block;
-    white-space: nowrap;
-    cursor: pointer;
-    background-color: #0db79b;
-    border-radius: 8px;
-    margin-top: 1.4em;
-    padding: 12px 12px;
-    padding-bottom: 11px;
-    margin-left: auto;
-    margin-right: 0.7em;
-    border: 1px solid #a3a3a3;
-    color: white;
-    font-size: 1em;
-    font-weight: bold;
+  #header-new-article-button-link {
+    display: none;
   }
 }
 
-.header-new-article-button {
+#header-new-article-button-link {
   white-space: nowrap;
   cursor: pointer;
   background-color: #0db79b;
@@ -316,10 +301,7 @@ body {
   color: white;
   font-size: 1em;
   font-weight: bold;
-}
-
-.header-new-article-button-small {
-  display: none;
+  text-decoration: none;
 }
 
 /* HEADER USER DISPLAY */
@@ -400,4 +382,29 @@ body {
 #header-want-to-contribute {
   position: relative;
   top: 3px;
+}
+
+/* ARTICLES ALL */
+
+.articles-list {
+  list-style: none;
+  text-align: left;
+}
+
+.articles-list-element {
+  /* display: flex;
+  flex-direction: row; */
+}
+
+/* VOTE BUTTONS */
+
+.vote-buttons {
+}
+
+.top-vote-button {
+  background: none;
+  border: none;
+}
+
+.vote-buttons-img {
 }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { patchArticle, patchComment } from "../api.js";
 import LoginPopup from "./Header.LoginPopup.jsx";
+import upVote from "../images/upvote.png";
 
 class VoteButtons extends Component {
   state = {
@@ -11,8 +12,9 @@ class VoteButtons extends Component {
     const { loggedInUser, loginUser } = this.props;
     const { votes, showLoginPopup } = this.state;
     return (
-      <div>
+      <span className="vote-buttons">
         <button
+          className="top-vote-button"
           disabled={votes === 1}
           onClick={
             loggedInUser
@@ -24,9 +26,10 @@ class VoteButtons extends Component {
                 }
           }
         >
-          like
+          <img className="vote-buttons-img" src={upVote} alt="up vote" />
         </button>
-        VOTES: {this.props.votes + votes}
+        <div> {this.props.votes + votes}</div>
+
         <button
           disabled={votes === -1}
           onClick={
@@ -47,7 +50,7 @@ class VoteButtons extends Component {
             loginUser={loginUser}
           />
         )}
-      </div>
+      </span>
     );
   }
   handleVote = direction => {
