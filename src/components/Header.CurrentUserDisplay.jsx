@@ -2,10 +2,12 @@ import React from "react";
 
 const CurrentUserDisplay = ({ loggedInUser }) => {
   return (
-    <div>
+    <span id="current-user-display">
       <span>{loggedInUser.username}</span>
-      <img src={loggedInUser.avatar_url} alt="User avatar" id="user-avatar" />
-    </div>
+      <span className="user-display-dividing-lines"> | </span>
+      <img id="user-avatar" src={loggedInUser.avatar_url} alt="User avatar" />
+      <span className="user-display-dividing-lines"> | </span>
+    </span>
   );
 };
 
