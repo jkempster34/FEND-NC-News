@@ -21,6 +21,7 @@ class Home extends Component {
     );
   }
   componentDidUpdate = (prevProps, prevState) => {
+    window.scrollTo(0, 0);
     if (
       this.state.sortBy !== prevState.sortBy ||
       this.state.limit !== prevState.limit ||
