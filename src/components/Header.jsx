@@ -22,7 +22,7 @@ class Header extends Component {
             all
           </Link>
           {topics.map(topic => (
-            <Link className="header-topics" to={`/${topic}`} key={topic}>
+            <Link className="header-topics" to={`/topic/${topic}`} key={topic}>
               <span>{topic}</span>
             </Link>
           ))}
