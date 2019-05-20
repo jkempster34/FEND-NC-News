@@ -21,8 +21,13 @@ class NewArticle extends Component {
         <h4>You are submitting a text post.</h4>
         <form onSubmit={this.submitArticle}>
           <div>
-            <label>
-              Title: <input name="title" onChange={this.handleChange} />
+            <label id="new-article-title-label">
+              Title:{" "}
+              <input
+                id="new-article-title-input"
+                name="title"
+                onChange={this.handleChange}
+              />
             </label>
           </div>
           <div>

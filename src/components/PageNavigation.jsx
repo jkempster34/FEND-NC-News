@@ -12,12 +12,19 @@ const PageNavigation = props => {
     return (
       <div>
         {currentPage !== 1 && (
-          <button onClick={() => changePage(-1)}>back</button>
+          <button className="navigation-button" onClick={() => changePage(-1)}>
+            back
+          </button>
         )}
         {pageTotal !== 1 &&
           numberButtons.map(numberButton => {
             return (
               <button
+                className={`${
+                  currentPage === numberButton
+                    ? "navigation-button-current"
+                    : "navigation-button"
+                }`}
                 key={numberButton}
                 onClick={() => changePage(numberButton, "replace")}
               >
@@ -26,7 +33,9 @@ const PageNavigation = props => {
             );
           })}
         {currentPage !== pageTotal && (
-          <button onClick={() => changePage(1)}>next</button>
+          <button className="navigation-button" onClick={() => changePage(1)}>
+            next
+          </button>
         )}
       </div>
     );
