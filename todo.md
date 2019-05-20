@@ -24,3 +24,7 @@ error handling
 <!-- comments are different between main page and individual article -->
 
 fixe add new article button
+
+make it so you can only add one comment - for colors
+
+go to a user page

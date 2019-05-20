@@ -33,14 +33,14 @@ class App extends Component {
           topics={this.state.topics}
         />
         <div className="main-body">
-          <Router>
+          <Router primary={false}>
             <All
               path="/"
               loginUser={this.loginUser}
               loggedInUser={this.state.loggedInUser}
             />
             <All
-              path="/:topic"
+              path="/topic/:topic"
               loginUser={this.loginUser}
               loggedInUser={this.state.loggedInUser}
             />

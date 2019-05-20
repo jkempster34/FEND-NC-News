@@ -399,12 +399,44 @@ body {
 /* VOTE BUTTONS */
 
 .vote-buttons {
+  border: none;
+  text-align: center;
+  margin: 0.2em;
+  margin-right: 1em;
+  width: 50px;
 }
 
 .top-vote-button {
   background: none;
   border: none;
+  height: 20px;
+  width: 30px;
+}
+
+.bottom-vote-button {
+  background: none;
+  border: none;
+  height: 20px;
+  width: 30px;
 }
 
 .vote-buttons-img {
+  height: 100%;
+  width: 100%;
+}
+
+.articles-list-element-even {
+  display: flex;
+
+  background-color: white;
+}
+
+.articles-list-element-odd {
+  display: flex;
+  background-color: #f2f1f1;
+}
+
+.article-body {
+  display: flex;
+  flex-direction: column;
 }
