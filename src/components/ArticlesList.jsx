@@ -26,7 +26,7 @@ const ArticlesList = props => {
               loggedInUser={props.loggedInUser}
             />
             <div className="article-body">
-              <span>
+              <span className="article-full-article-text">
                 <Link
                   className="article-full-article-link"
                   to={`/articles/${article.article_id}`}

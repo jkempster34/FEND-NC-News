@@ -3,7 +3,7 @@ import ArticlesList from "../components/ArticlesList";
 import { getArticles } from "../api.js";
 import PageNavigation from "../components/PageNavigation";
 
-class All extends Component {
+class Home extends Component {
   state = {
     sortBy: "created_at",
     articles: null,
@@ -65,16 +65,30 @@ class All extends Component {
     } = this.state;
     return (
       <div className="articles">
-        <select value={sortBy} onChange={this.handleSort}>
-          <option value="created_at">Recent</option>
-          <option value="comment_count">Comments</option>
-          <option value="votes">Votes</option>
-        </select>
-        <select value={limit} onChange={this.handleLimit}>
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={100}>100</option>
-        </select>
+        <div className="articles-sort-by">
+          {" "}
+          <label className="articles-sort-by-labels">sort by </label>
+          <select
+            className="sort-by-selector"
+            value={sortBy}
+            onChange={this.handleSort}
+          >
+            <option value="created_at">new</option>
+            <option value="comment_count">comments</option>
+            <option value="votes">votes</option>
+          </select>{" "}
+          <label className="articles-sort-by-labels">show </label>
+          <select
+            className="sort-by-selector"
+            value={limit}
+            onChange={this.handleLimit}
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={100}>100</option>
+          </select>
+        </div>
+
         <ArticlesList
           articles={articles}
           loading={loading}
@@ -120,4 +134,4 @@ class All extends Component {
   };
 }
 
-export default All;
+export default Home;
