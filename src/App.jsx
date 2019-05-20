@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
-import All from "./pages/All.jsx";
+import Home from "./pages/Home.jsx";
 import SingleArticle from "./pages/SingleArticle.jsx";
 import NewArticle from "./pages/NewArticle.jsx";
 import Header from "./components/Header.jsx";
@@ -34,12 +34,12 @@ class App extends Component {
         />
         <div className="main-body">
           <Router primary={false}>
-            <All
+            <Home
               path="/"
               loginUser={this.loginUser}
               loggedInUser={this.state.loggedInUser}
             />
-            <All
+            <Home
               path="/topic/:topic"
               loginUser={this.loginUser}
               loggedInUser={this.state.loggedInUser}
