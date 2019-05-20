@@ -364,6 +364,10 @@ body {
   cursor: pointer;
 }
 
+#header-log-in-button:hover {
+  text-decoration: underline;
+}
+
 #user-avatar {
   position: relative;
   top: 3px;
@@ -382,18 +386,6 @@ body {
 #header-want-to-contribute {
   position: relative;
   top: 3px;
-}
-
-/* ARTICLES ALL */
-
-.articles-list {
-  list-style: none;
-  text-align: left;
-}
-
-.articles-list-element {
-  /* display: flex;
-  flex-direction: row; */
 }
 
 /* VOTE BUTTONS */
@@ -424,19 +416,73 @@ body {
   height: 100%;
   width: 100%;
 }
+/* ARTICLES LIST */
+
+.articles-list {
+  list-style: none;
+  text-align: left;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+@media only screen and (max-width: 500px) {
+  .articles-list {
+    padding: 0;
+  }
+}
 
 .articles-list-element-even {
   display: flex;
-
   background-color: white;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .articles-list-element-odd {
   display: flex;
   background-color: #f2f1f1;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .article-body {
   display: flex;
   flex-direction: column;
+}
+
+.article-full-article-link {
+  text-decoration: none;
+  color: black;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.article-full-article-link:hover {
+  color: #0db79b;
+}
+
+.article-topic-link {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.article-topic-link:hover {
+  color: #0db79b;
+}
+
+.article-comment-link {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.article-comment-link:hover {
+  text-decoration: underline;
+}
+
+.article-middle-section {
+  margin-top: 0.5em;
+  margin-bottom: 0.4em;
 }

@@ -27,15 +27,33 @@ const ArticlesList = props => {
             />
             <div className="article-body">
               <span>
-                <Link to={`/articles/${article.article_id}`}>
+                <Link
+                  className="article-full-article-link"
+                  to={`/articles/${article.article_id}`}
+                >
                   {article.title}
                 </Link>
               </span>
-              <span>
+              <span className="article-middle-section">
                 {" "}
-                COMMENTS: {article.comment_count}
-                AUTHOR : {article.author}
-                CREATED_AT: {changeTimeToAgo(article.created_at)}
+                submitted {changeTimeToAgo(article.created_at)} by{" "}
+                {article.author} to{" "}
+                <Link
+                  className="article-topic-link"
+                  to={`/topic/${article.topic}`}
+                  key={article.topic + index}
+                >
+                  <span>{article.topic}</span>
+                </Link>
+              </span>
+              <span>
+                <Link
+                  className="article-comment-link"
+                  to={`/articles/${article.article_id}`}
+                  key={article.topic + index}
+                >
+                  {article.comment_count} comments
+                </Link>
               </span>
             </div>
           </li>
