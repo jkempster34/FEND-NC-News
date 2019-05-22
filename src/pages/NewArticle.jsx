@@ -21,9 +21,10 @@ class NewArticle extends Component {
         <h4>You are submitting a text post.</h4>
         <form onSubmit={this.submitArticle}>
           <div id="new-article-title-box">
-            <label id="new-article-title-label">
+            <label className="input-label">
               TITLE
               <input
+                className="form-input"
                 id="new-article-title-input"
                 name="title"
                 onChange={this.handleChange}
@@ -32,9 +33,10 @@ class NewArticle extends Component {
             </label>
           </div>
           <div id="new-article-topic-box">
-            <label id="new-article-topic-label">
+            <label className="input-label">
               TOPIC
               <input
+                className="form-input"
                 id="new-article-topic-input"
                 name="topic"
                 onChange={this.handleChange}
@@ -44,7 +46,7 @@ class NewArticle extends Component {
           </div>
           <p>Popular choices are: coding, football, cooking</p>
           <div id="new-article-post-box">
-            <label id="new-article-post-label">
+            <label className="input-label" id="new-article-post-label">
               POST
               <textarea
                 id="new-article-post-text-area"
@@ -54,7 +56,7 @@ class NewArticle extends Component {
               />
             </label>
           </div>
-          <button>Submit</button>
+          <button id="new-article-submit-button">Submit</button>
         </form>
         {this.state.incompleteArticleForm && (
           <p>
