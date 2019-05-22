@@ -25,6 +25,7 @@ body {
 }
 
 .login-popup {
+  z-index: 1000;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -591,7 +592,7 @@ select:focus {
 
 /* NEW ARTICLE PAGE */
 
-#new-article-title-label {
+.input-label {
   background-color: #0db79b;
   display: inline-block;
   width: 200px;
@@ -603,8 +604,7 @@ select:focus {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
-
-#new-article-title-input {
+.form-input {
   border: 1px solid rgba(0, 0, 0, 0.1);
   z-index: -1;
   background-color: #d9fcf6;
@@ -619,6 +619,7 @@ select:focus {
   border-bottom-right-radius: 8px;
   padding: 0 30px 0 10px;
 }
+
 #new-article-title-input:focus {
   border: 1px solid #0a9a82;
   outline: none;
@@ -626,66 +627,26 @@ select:focus {
 
 #new-article-topic-box {
   padding-top: 30px;
-  z-index: -1;
 }
 
-#new-article-topic-label {
-  background-color: #0db79b;
-  font-weight: bold;
-  display: inline-block;
-  width: 200px;
-  height: 35px;
-  color: white;
-  font-size: 1.2em;
-  line-height: 35px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-#new-article-topic-input {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  z-index: -1;
-  background-color: #d9fcf6;
-  font-size: 0.8em;
-  width: 100%;
-  height: 35px;
-  position: relative;
-  top: -4px;
-  box-sizing: border-box;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  padding: 0 30px 0 10px;
-}
 #new-article-topic-input:focus {
   border: 1px solid #0a9a82;
   outline: none;
 }
-#new-article-post-box {
-  /* resize: both; */
-}
 
 #new-article-post-label {
-  background-color: #0db79b;
-  font-weight: bold;
-  display: inline-block;
   width: 500px;
-  height: 35px;
-  color: white;
-  font-size: 1.2em;
-  line-height: 35px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 }
 
 #new-article-post-text-area {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  z-index: -1;
+  min-height: 60px;
   background-color: #d9fcf6;
   font-size: 0.8em;
   width: 100%;
   height: 80px;
   position: relative;
-  top: -4px;
+  top: -6px;
   box-sizing: border-box;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -703,4 +664,20 @@ select:focus {
   #new-article-post-label {
     width: 250px;
   }
+}
+
+#new-article-submit-button {
+  background-color: white;
+  position: relative;
+  top: 3em;
+  border-radius: 8px;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 5px 12px;
+  text-align: center;
+  height: 40px;
+  width: 100px;
+
+  margin: 2.5em;
+  cursor: pointer;
 }
