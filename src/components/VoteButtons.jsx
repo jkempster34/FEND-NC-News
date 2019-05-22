@@ -80,9 +80,9 @@ class VoteButtons extends Component {
     });
   };
 
-  toggleLoginPopup = () => {
+  toggleLoginPopup = status => {
     this.setState({
-      showLoginPopup: !this.state.showLoginPopup
+      showLoginPopup: status
     });
   };
 }

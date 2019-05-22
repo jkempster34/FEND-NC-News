@@ -13,7 +13,9 @@ class LoginPopup extends Component {
           <div className="login-popup-header">
             <h3 id="login-title">LOGIN</h3>
             <button
-              onClick={this.props.toggleLoginPopup}
+              onClick={() => {
+                this.props.toggleLoginPopup(false);
+              }}
               id="header-close-button"
             />
           </div>
@@ -45,7 +47,7 @@ class LoginPopup extends Component {
     );
   }
   handleEsc = event => {
-    if (event.keyCode === 27) this.props.toggleLoginPopup();
+    if (event.keyCode === 27) this.props.toggleLoginPopup(false);
   };
 
   handleInput = event => {
@@ -59,7 +61,7 @@ class LoginPopup extends Component {
         this.props.loginUser(validUser);
       })
       .then(() => {
-        this.props.toggleLoginPopup();
+        this.props.toggleLoginPopup(false);
       })
       .catch(() => this.setState({ wrongLogin: true }));
   };

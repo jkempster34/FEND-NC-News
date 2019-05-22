@@ -20,25 +20,38 @@ class NewArticle extends Component {
       <div className="new-article">
         <h4>You are submitting a text post.</h4>
         <form onSubmit={this.submitArticle}>
-          <div>
+          <div id="new-article-title-box">
             <label id="new-article-title-label">
-              Title:{" "}
+              TITLE
               <input
                 id="new-article-title-input"
                 name="title"
                 onChange={this.handleChange}
+                required
               />
             </label>
           </div>
-          <div>
-            <label>
-              Topic: <input name="topic" onChange={this.handleChange} />
+          <div id="new-article-topic-box">
+            <label id="new-article-topic-label">
+              TOPIC
+              <input
+                id="new-article-topic-input"
+                name="topic"
+                onChange={this.handleChange}
+                required
+              />
             </label>
           </div>
           <p>Popular choices are: coding, football, cooking</p>
-          <div>
-            <label>
-              Post: <textarea name="body" onChange={this.handleChange} />
+          <div id="new-article-post-box">
+            <label id="new-article-post-label">
+              POST
+              <textarea
+                id="new-article-post-text-area"
+                name="body"
+                onChange={this.handleChange}
+                required
+              />
             </label>
           </div>
           <button>Submit</button>
