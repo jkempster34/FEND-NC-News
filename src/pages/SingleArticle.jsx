@@ -3,6 +3,7 @@ import { getArticleById } from "../api.js";
 import CommentsForArticle from "../components/CommentsForArticle.jsx";
 import { navigate } from "@reach/router";
 import VoteButtons from "../components/VoteButtons.jsx";
+import { changeTimeToAgo } from "../utils/changeTimeToAgo.js";
 
 class SingleArticle extends Component {
   state = {
@@ -38,12 +39,7 @@ class SingleArticle extends Component {
       <p>loading...</p>
     ) : (
       <div>
-        {locationState && locationState.new && <p>Here, is your article:</p>}
-        COMMENTS: {this.state.commentCount}
-        AUTHOR : {article.author}
-        CREATED_AT: {article.created_at}
-        BODY: {article.body}
-        <div>
+        <div id="article-full-article">
           <VoteButtons
             articleId={this.props.article_id}
             votes={votes}
@@ -51,6 +47,19 @@ class SingleArticle extends Component {
             loginUser={loginUser}
             loggedInUser={this.props.loggedInUser}
           />
+          <div>
+            {" "}
+            {locationState && locationState.new && (
+              <p>Here, is your article:</p>
+            )}
+            <div className="article-full-article-title">{article.title}</div>
+            <div>
+              submitted {changeTimeToAgo(article.created_at)} by{" "}
+              <span id="single-article-author">{article.author}</span>
+            </div>
+            <div>{this.state.commentCount} comments</div>
+            <div id="article-full-article-body">{article.body}</div>
+          </div>
         </div>
         <p>....</p>
         <h4>Comments</h4>

@@ -9,11 +9,11 @@ const ArticlesList = props => {
   return loading ? (
     <p>loading...</p>
   ) : (
-    <ul className="articles-list">
+    <ul className="content-list">
       {articles.map((article, index) => {
         return (
           <li
-            className={`articles-list-element${
+            className={`content-list-element${
               index % 2 === 0 ? "-even" : "-odd"
             }`}
             key={article.article_id}
@@ -28,7 +28,8 @@ const ArticlesList = props => {
             <div className="article-body">
               <span className="article-full-article-text">
                 <Link
-                  className="article-full-article-link"
+                  className="article-full-article-title"
+                  id="article-full-article-link"
                   to={`/articles/${article.article_id}`}
                 >
                   {article.title}

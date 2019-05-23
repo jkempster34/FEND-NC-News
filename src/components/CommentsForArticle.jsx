@@ -4,6 +4,7 @@ import PostCommentForm from "../components/PostCommentForm.jsx";
 import VoteButtons from "./VoteButtons.jsx";
 import DeleteButton from "./DeleteButton.jsx";
 import PageNavigation from "./PageNavigation.jsx";
+import { changeTimeToAgo } from "../utils/changeTimeToAgo.js";
 
 class CommentsForArticle extends Component {
   state = {
@@ -70,13 +71,15 @@ class CommentsForArticle extends Component {
           <option value={100}>100</option>
         </select>
         {newComment && <p>Here is your new comment</p>}
-        <ul>
-          {comments.map(comment => {
+        <ul className="content-list">
+          {comments.map((comment, index) => {
             return (
-              <li key={comment.comment_id}>
-                BODY: {comment.body}
-                AUTHOR : {comment.author}
-                CREATED_AT: {comment.created_at}
+              <li
+                className={`content-list-element${
+                  index % 2 === 0 ? "-even" : "-odd"
+                }`}
+                key={comment.comment_id}
+              >
                 <VoteButtons
                   commentId={comment.comment_id}
                   votes={comment.votes}
@@ -84,13 +87,19 @@ class CommentsForArticle extends Component {
                   loggedInUser={this.props.loggedInUser}
                   loginUser={this.props.loginUser}
                 />
-                {this.props.loggedInUser.username === comment.author && (
-                  <DeleteButton
-                    commentId={comment.comment_id}
-                    repopulateList={this.repopulateList}
-                    articleId={this.props.articleId}
-                  />
-                )}
+
+                <div id="comment-list-comment">
+                  <span id="comment-list-author">{comment.author}</span>{" "}
+                  {changeTimeToAgo(comment.created_at)}
+                  <div id="comment-list-body">{comment.body}</div>
+                  {this.props.loggedInUser.username === comment.author && (
+                    <DeleteButton
+                      commentId={comment.comment_id}
+                      repopulateList={this.repopulateList}
+                      articleId={this.props.articleId}
+                    />
+                  )}
+                </div>
               </li>
             );
           })}
