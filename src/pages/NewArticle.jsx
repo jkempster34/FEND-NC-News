@@ -59,7 +59,7 @@ class NewArticle extends Component {
           <button id="new-article-submit-button">Submit</button>
         </form>
         {this.state.incompleteArticleForm && (
-          <p>
+          <p id="new-article-error-message">
             All fields must be completed. Topic must pre-exist and user must be
             logged in.
           </p>

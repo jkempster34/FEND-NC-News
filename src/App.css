@@ -416,7 +416,7 @@ body {
 }
 /* ARTICLES LIST */
 
-.articles-list {
+.content-list {
   list-style: none;
   text-align: left;
   padding-left: 1em;
@@ -430,15 +430,17 @@ body {
   }
 }
 
-.articles-list-element-even {
+.content-list-element-even {
   display: flex;
+  align-items: center;
   background-color: white;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
 
-.articles-list-element-odd {
+.content-list-element-odd {
   display: flex;
+  align-items: center;
   background-color: #f2f1f1;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -449,13 +451,13 @@ body {
   flex-direction: column;
 }
 
-.article-full-article-link {
+.article-full-article-title {
   text-decoration: none;
   color: black;
   font-size: 1.1em;
   font-weight: bold;
 }
-.article-full-article-link:hover {
+#article-full-article-link:hover {
   color: #0db79b;
 }
 
@@ -606,7 +608,7 @@ select:focus {
 }
 .form-input {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  z-index: -1;
+
   background-color: #d9fcf6;
   font-size: 0.8em;
 
@@ -646,12 +648,17 @@ select:focus {
   width: 100%;
   height: 80px;
   position: relative;
-  top: -6px;
+  top: -4px;
   box-sizing: border-box;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 0 30px 0 10px;
   resize: vertical;
+}
+
+#new-article-post-text-area:focus {
+  border: 1px solid #0a9a82;
+  outline: none;
 }
 
 @media only screen and (max-width: 550px) {
@@ -680,4 +687,44 @@ select:focus {
 
   margin: 2.5em;
   cursor: pointer;
+}
+
+#new-article-submit-button:focus {
+  border: 1px solid #a3a3a3;
+  outline: none;
+}
+
+#new-article-error-message {
+  position: relative;
+  top: -7em;
+  color: red;
+}
+
+/* SINGLE ARTICLE PAGE */
+
+#comment-list-comment {
+  margin-top: 0.4em;
+}
+
+#comment-list-author {
+  font-weight: bold;
+}
+#comment-list-body {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+#single-article-author {
+  font-weight: bold;
+}
+
+#article-full-article {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+#article-full-article-body {
+  background-color: #f2f1f1;
+  border: 1px solid #a3a3a3;
 }
