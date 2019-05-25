@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ArticlesList from "../components/ArticlesList";
 import { getArticles } from "../api.js";
 import PageNavigation from "../components/PageNavigation";
+import { navigate } from "@reach/router";
 
 class Home extends Component {
   state = {
@@ -118,9 +119,16 @@ class Home extends Component {
       p: page,
       limit: limit,
       topic: topic
-    }).then(({ articles, total_count }) => {
-      this.setState({ articles, loading: false, totalPages: total_count });
-    });
+    })
+      .then(({ articles, total_count }) => {
+        this.setState({ articles, loading: false, totalPages: total_count });
+      })
+      .catch(({ response: { data, status } }) => {
+        navigate("/not-found", {
+          state: { from: "article", msg: data.msg, status },
+          replace: true
+        });
+      });
   };
   changePage = (pageNum, numButton) => {
     if (numButton) {
