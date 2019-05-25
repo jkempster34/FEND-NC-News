@@ -13,13 +13,29 @@ class PostCommentForm extends Component {
   }
   render() {
     return (
-      <div>
-        <form onSubmit={this.submitComment}>
-          {" "}
-          <textarea name="body" onChange={this.handleChange} />
-          <button disabled={!this.state.postbody.body}>Submit</button>
-        </form>
-      </div>
+      this.props.loggedInUser && (
+        <div id="post-comment">
+          <form onSubmit={this.submitComment}>
+            {" "}
+            <textarea
+              placeholder="add a public comment..."
+              id="post-comment-text-area"
+              name="body"
+              value={`${this.state.postbody.body}`}
+              onChange={this.handleChange}
+            />
+            <div>
+              {" "}
+              <button
+                id="post-comment-submit-button"
+                disabled={!this.state.postbody.body}
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      )
     );
   }
 
@@ -36,6 +52,7 @@ class PostCommentForm extends Component {
   submitComment = event => {
     event.preventDefault();
     postComment(this.props.articleId, this.state.postbody).then(newComment => {
+      this.setState({ postbody: { ...this.state.postbody, body: "" } });
       this.props.addNewComment(newComment);
     });
   };

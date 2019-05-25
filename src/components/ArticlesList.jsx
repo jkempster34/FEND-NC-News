@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "@reach/router";
 import { changeTimeToAgo } from "../utils/changeTimeToAgo.js";
 import VoteButtons from "../components/VoteButtons.jsx";
+import loadingGif from "../images/loading.gif";
 
 const ArticlesList = props => {
   const { articles, loading } = props;
 
   return loading ? (
-    <p>loading...</p>
+    <img className="loading-gif" src={loadingGif} alt="loading..." />
   ) : (
     <ul className="content-list">
       {articles.map((article, index) => {
