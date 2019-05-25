@@ -722,9 +722,14 @@ select:focus {
   display: flex;
   align-items: center;
   text-align: left;
+  margin-top: 1em;
 }
 
 #article-full-article-body {
   background-color: #f2f1f1;
   border: 1px solid #a3a3a3;
+  padding: 1em 1em 1em 1em;
+  border-radius: 8px;
+  margin-right: 2em;
+  margin-top: 1em;
 }

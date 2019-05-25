@@ -7,7 +7,7 @@ const ShowError = ({ location }) => {
       {location.state ? (
         <h1>oops {location.state.status}</h1>
       ) : (
-        <h1>pagenot found</h1>
+        <h1>page not found</h1>
       )}
       {location.state && <p>{location.state.msg}</p>}
     </div>
