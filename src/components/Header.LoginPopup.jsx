@@ -10,9 +10,8 @@ class LoginPopup extends Component {
   };
   render() {
     const { wrongLogin, loading } = this.state;
-    return loading ? (
-      <img src={loadingGif} alt="loading..." />
-    ) : (
+
+    return (
       <div className="login-popup">
         <div className="login-popup-inner" onKeyDown={this.handleEsc}>
           <div className="login-popup-header">
@@ -30,23 +29,29 @@ class LoginPopup extends Component {
             <strong>weegembump</strong>. Once logged in, NC News will remember
             who you are in case you visit again.
           </p>
-          <form onSubmit={this.handleSubmit}>
-            <label id="login-popup-username-label">
-              Username
-              <input
-                id="login-popup-username-input"
-                autoFocus
-                onChange={this.handleInput}
-                type="text"
-                placeholder="example: jessjelly"
-                required
-              />
-            </label>
-            <button id="login-popup-signin-button">Log in</button>
-            {wrongLogin && (
-              <p id="login-popup-no-user-exists">Incorrect username</p>
-            )}
-          </form>
+
+          {loading ? (
+            <img src={loadingGif} alt="loading..." />
+          ) : (
+            <form onSubmit={this.handleSubmit}>
+              <label id="login-popup-username-label">
+                Username
+                <input
+                  id="login-popup-username-input"
+                  autoFocus
+                  onChange={this.handleInput}
+                  type="text"
+                  placeholder="example: jessjelly"
+                  required
+                />
+              </label>
+
+              <button id="login-popup-signin-button">Log in</button>
+              {wrongLogin && (
+                <p id="login-popup-no-user-exists">Incorrect username</p>
+              )}
+            </form>
+          )}
         </div>
       </div>
     );
@@ -71,7 +76,7 @@ class LoginPopup extends Component {
             this.props.toggleLoginPopup(false);
           });
         })
-        .catch(() => this.setState({ wrongLogin: true }));
+        .catch(() => this.setState({ wrongLogin: true, loading: false }));
     });
   };
 }

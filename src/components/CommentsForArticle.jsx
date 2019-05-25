@@ -5,6 +5,7 @@ import VoteButtons from "./VoteButtons.jsx";
 import DeleteButton from "./DeleteButton.jsx";
 import PageNavigation from "./PageNavigation.jsx";
 import { changeTimeToAgo } from "../utils/changeTimeToAgo.js";
+import loadingGif from "../images/loading.gif";
 
 class CommentsForArticle extends Component {
   state = {
@@ -52,7 +53,7 @@ class CommentsForArticle extends Component {
   render() {
     const { comments, loading, sortBy, limit, p, newComment } = this.state;
     return loading ? (
-      <p>loading...</p>
+      <img className="loading-gif" src={loadingGif} alt="loading..." />
     ) : (
       <div>
         {" "}
@@ -61,16 +62,20 @@ class CommentsForArticle extends Component {
           articleId={this.props.articleId}
           addNewComment={this.addNewComment}
         />
+        <label className="comments-sort-by-labels">sort by </label>
         <select value={sortBy} onChange={this.handleSort}>
           <option value="created_at">Recent</option>
           <option value="votes">Votes</option>
-        </select>
+        </select>{" "}
+        <label className="comments-sort-by-labels">show </label>
         <select value={limit} onChange={this.handleLimit}>
           <option value={10}>10</option>
           <option value={20}>20</option>
           <option value={100}>100</option>
         </select>
-        {newComment && <p>Here is your new comment</p>}
+        {newComment && (
+          <h3 className="new-content-alert">You have posted a new comment</h3>
+        )}
         <ul className="content-list">
           {comments.map((comment, index) => {
             return (

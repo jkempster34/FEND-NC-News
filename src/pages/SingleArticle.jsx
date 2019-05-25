@@ -37,7 +37,7 @@ class SingleArticle extends Component {
     const { loginUser } = this.props;
     const { state: locationState } = this.props.location;
     return loading ? (
-      <img src={loadingGif} alt="loading..." />
+      <img className="loading-gif" src={loadingGif} alt="loading..." />
     ) : (
       <div>
         <div id="article-full-article">
@@ -51,7 +51,9 @@ class SingleArticle extends Component {
           <div>
             {" "}
             {locationState && locationState.new && (
-              <p>Here, is your article:</p>
+              <h3 className="new-content-alert" id="new-article-alert">
+                You have posted a new article
+              </h3>
             )}
             <div className="article-full-article-title">{article.title}</div>
             <div>
@@ -62,8 +64,6 @@ class SingleArticle extends Component {
             <div id="article-full-article-body">{article.body}</div>
           </div>
         </div>
-        <p>....</p>
-        <h4>Comments</h4>
         <CommentsForArticle
           articleId={this.props.article_id}
           loggedInUser={this.props.loggedInUser}
