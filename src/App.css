@@ -401,6 +401,7 @@ body {
   border: none;
   height: 20px;
   width: 30px;
+  cursor: pointer;
 }
 
 .bottom-vote-button {
@@ -408,6 +409,7 @@ body {
   border: none;
   height: 20px;
   width: 30px;
+  cursor: pointer;
 }
 
 .vote-buttons-img {
