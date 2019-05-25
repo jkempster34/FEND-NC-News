@@ -4,6 +4,7 @@ import CommentsForArticle from "../components/CommentsForArticle.jsx";
 import { navigate } from "@reach/router";
 import VoteButtons from "../components/VoteButtons.jsx";
 import { changeTimeToAgo } from "../utils/changeTimeToAgo.js";
+import loadingGif from "../images/loading.gif";
 
 class SingleArticle extends Component {
   state = {
@@ -36,7 +37,7 @@ class SingleArticle extends Component {
     const { loginUser } = this.props;
     const { state: locationState } = this.props.location;
     return loading ? (
-      <p>loading...</p>
+      <img src={loadingGif} alt="loading..." />
     ) : (
       <div>
         <div id="article-full-article">

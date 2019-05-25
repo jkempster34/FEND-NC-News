@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { getUser } from "../api.js";
+import loadingGif from "../images/loading.gif";
 
 class LoginPopup extends Component {
   state = {
     userNameInput: "",
-    wrongLogin: false
+    wrongLogin: false,
+    loading: false
   };
   render() {
-    return (
+    const { wrongLogin, loading } = this.state;
+    return loading ? (
+      <img src={loadingGif} alt="loading..." />
+    ) : (
       <div className="login-popup">
         <div className="login-popup-inner" onKeyDown={this.handleEsc}>
           <div className="login-popup-header">
@@ -38,7 +43,7 @@ class LoginPopup extends Component {
               />
             </label>
             <button id="login-popup-signin-button">Log in</button>
-            {this.state.wrongLogin && (
+            {wrongLogin && (
               <p id="login-popup-no-user-exists">Incorrect username</p>
             )}
           </form>
@@ -56,14 +61,18 @@ class LoginPopup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    getUser(this.state.userNameInput)
-      .then(validUser => {
-        this.props.loginUser(validUser);
-      })
-      .then(() => {
-        this.props.toggleLoginPopup(false);
-      })
-      .catch(() => this.setState({ wrongLogin: true }));
+    this.setState({ loading: true }, () => {
+      getUser(this.state.userNameInput)
+        .then(validUser => {
+          this.props.loginUser(validUser);
+        })
+        .then(() => {
+          this.setState({ loading: false }, () => {
+            this.props.toggleLoginPopup(false);
+          });
+        })
+        .catch(() => this.setState({ wrongLogin: true }));
+    });
   };
 }
 
