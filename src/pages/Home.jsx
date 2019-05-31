@@ -125,7 +125,7 @@ class Home extends Component {
       })
       .catch(({ response: { data, status } }) => {
         navigate("/not-found", {
-          state: { from: "article", msg: data.msg, status },
+          state: { from: "home", msg: data.msg, status },
           replace: true
         });
       });
