@@ -21,4 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 todo.md
+=======
+>>>>>>> 21ccc402e393515385a432103844435b9b0615d5
