@@ -3,6 +3,7 @@
 Northcoders News is a website comprising of user-generated articles in a bulletin board system. This content can be discussed through comments, and each article or comment can be rated by means of a votes system. It was built as part of the Developer Pathway, a 12-week coding bootcamp at Northcoders in Manchester.
 
 The front end of Northcoders News is built in React and the deployed app can be found at:
+https://joseph-kempster-nc-news.netlify.com/
 
 The back end can be found at: https://github.com/jkempster34/BEND-NC-News
 
